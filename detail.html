@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Movie archive</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+	<div class="header">
+
+		<div class="header_column">
+			<div id="header_first_column">
+				<input class="header_search_input" type="search" placeholder="buscar">
+			</div>
+		</div>
+		<div class="header_column">
+			<a href="index.html" id="header_second_column">
+				<div id="header_second_column_logo"></div>
+				<div id="header_second_column_name">MOVIE ARCHIVE</div>
+			</a>
+		</div>
+		<div class="header_column">
+			<div id="header_third_column">
+				<a href="#" id="header_login">
+						<div>acceder</div>
+				</a>
+				<a href="sign_up.html" id="header_signup">
+					<div>registrarse</div>
+				</a>
+				<a href="#" id="header_cart">
+					<div id="cart_btn"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="menu">
+		<table class="menu_table">
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/explosion.png" alt="-">
+				</td>
+				<td>Acción</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/backpack.png" alt="-">
+				</td>
+				<td>Aventura</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/gun.png" alt="-">
+				</td>
+				<td>Bélico</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/alien.png" alt="-">
+				</td>
+				<td>Ciencia ficción</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/drama.png" alt="-">
+				</td>
+				<td>Dramático</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/children.png" alt="-">
+				</td>
+				<td>Infantil</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/mistery.png" alt="-">
+				</td>
+				<td>Misterio</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/heart.png" alt="-">
+				</td>
+				<td>Romántico</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/thriller.png" alt="-">
+				</td>
+				<td>Suspense</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="css/img/menu_icons/freddy.png" alt="-">
+				</td>
+				<td>Terror</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="content">
+
+		<div class="detail_movie_info">
+
+			<div class="detail_movie_picture"></div>
+
+			<div class="detail_movie_info_2">
+
+				<div id="detail_movie_title"> Título</div>
+
+				<div id="detail_movie_misc"> Género     |     Fecha    |     País</div>
+
+				<div id="detail_movie_stars"> Estrellas</div>
+
+				<div class="detail_movie_purchase_info">
+					<div class="movie_price">9,99$</div>
+					<div id="detail_cart_buy_btns">
+						<a id="add_to_cart_btn" href="#">
+							<div>Añadir al carrito</div>
+						</a>
+						<a id="buy_btn" href="#">
+							<div>Comprar</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail_synopsis">
+			<div class="movie_info_title">Sinopsis</div>
+			<div class="movie_info_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend, dolor ac fermentum accumsan, risus mi lacinia justo, a mollis justo mi a lorem. Maecenas elementum tempus facilisis. Nam pellentesque ligula felis, ut aliquam massa eleifend in. Nullam a laoreet mauris, non bibendum ligula. Maecenas lacinia orci arcu, a egestas elit gravida id. Nunc id odio mauris. Proin consequat in diam sed vulputate. Duis leo tortor, maximus nec pretium ac, pretium eu urna. Pellentesque eu ex pellentesque, cursus lacus ut, molestie neque. Mauris magna metus, aliquet fringilla lectus feugiat, sodales blandit magna. </div>
+		</div>
+
+		<div class="detail_cast">
+			<div class="movie_info_title">Reparto</div>
+			<div id="movie_info_cast">
+				<div class="movie_info_cast_item">
+					<div class="circle"></div>
+					<div id="cast_item_text">Actor</div>
+				</div>
+				<div class="movie_info_cast_item">
+					<div class="circle"></div>
+					<div id="cast_item_text">Actor</div>
+				</div>
+				<div class="movie_info_cast_item">
+					<div class="circle"></div>
+					<div id="cast_item_text">Actor</div>
+				</div>
+				<div class="movie_info_cast_item">
+					<div class="circle"></div>
+					<div id="cast_item_text">Actor</div>
+				</div>
+				<div class="movie_info_cast_item">
+					<div class="circle"></div>
+					<div id="cast_item_text">Actor</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="detail_videos">
+			<div class="movie_info_title">Vídeos y fotografías</div>
+			<div id="videos">
+				<div class="video"></div>
+				<div class="video"></div>
+				<div class="video"></div>
+				<div class="video"></div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="footer">
+			<div class="footer_left">
+				<div class="footer_left_top">
+					<a href="#" class="footer_link">
+						<div>Ayuda</div>
+					</a>
+					<a href="#" class="footer_link">
+						<div>Mi cuenta</div>
+					</a>
+					<a href="#" class="footer_link">
+						<div>Sobre nosotros</div>
+					</a>
+					<a href="#" class="footer_link">
+						<div>Política de cookies</div>
+					</a>
+				</div>
+				<div class="footer_left_bottom">
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/visa.png" alt="VISA">
+					</div>
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/mastercard.png" alt="MASTERCARD">
+					</div>
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/paypal.png" alt="PAYPAL">
+					</div>
+				</div>
+			</div>
+			
+			<div class="footer_right">
+				<div class="footer_right_top">
+					<div id="moviearchive_hashtag">#moviearchive</div>
+				</div>
+				<div class="footer_right_bottom">
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/facebook.png" alt="FACEBOOK">
+					</div>
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/twitter.png" alt="TWITTER">
+					</div>
+					<div class="footer_icon">
+						<img src="css/img/footer_icons/instagram.png" alt="INSTAGRAM">
+					</div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>
