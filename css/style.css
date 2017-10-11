@@ -449,7 +449,13 @@ th, td{
 #sign_up_table_forgot_done{
 	padding-top: 20px;
 	padding-left: 20px;
-	display: inline-flex;	
+	text-align: right;
+}
+
+#log_in_table_forgot_done{
+	padding-top: 20px;
+	padding-left: 20px;
+	display: inline-flex;
 }
 
 #sign_up_forgot_pass{
@@ -642,3 +648,11 @@ h2{
 	overflow-y: auto;
 }
 
+
+.log_in_card_div{
+	bottom: 15%;
+	height: 70%;
+	position: fixed;
+	width: 100%;
+	padding: 10px;
+}
