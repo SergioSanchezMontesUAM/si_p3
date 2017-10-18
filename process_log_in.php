@@ -7,7 +7,7 @@
     	    $path = getcwd() . "/usuarios/" . $_REQUEST['username'];
     	    
     	    //Comprobamos si está registrado
-    	    if(!file_exists()$path){
+    	    if(!file_exists($path)){
     	        echo "Usuario no registrado";
     	    }
     	    else{
