@@ -1,3 +1,30 @@
+<?php
+
+	$id = $_GET['id'];
+
+	if(!isset($id)){
+		header('Location: index.php');
+		exit();
+	}
+	
+	$catalogo = simplexml_load_file('catalogo.xml');
+	
+	$peliculas = $catalogo->xpath("/catalogo/pelicula[id=\"" . $id . "\"]");
+	    
+	foreach($peliculas as $pelicula){
+		$title = $pelicula->titulo;
+		$genre = $pelicula->categoria;
+		$year = $pelicula->anno;
+		$country = $pelicula->pais;
+		$price = $pelicula->precio;
+		$synopsis = $pelicula->sinopsis;
+		$actors = $pelicula->actores;
+		$videosANDphotos = $pelicula->fotosYvideos;
+	}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,14 +135,26 @@
 
 			<div class="detail_movie_info_2">
 
-				<div id="detail_movie_title"> Título</div>
+				<div id="detail_movie_title"> 
+					<?php
+						echo $title;
+					?>
+				</div>
 
-				<div id="detail_movie_misc"> Género     |     Fecha    |     País</div>
+				<div id="detail_movie_misc"> 
+					<?php
+						echo $genre . " | " . $year . " | " . $country;  
+					?>
+				</div>
 
 				<div id="detail_movie_stars"> Estrellas</div>
 
 				<div class="detail_movie_purchase_info">
-					<div class="movie_price">9,99$</div>
+					<div class="movie_price">
+						<?php
+							echo $price;
+						?>
+					</div>
 					<div id="detail_cart_buy_btns">
 						<a id="add_to_cart_btn" href="#">
 							<div>Añadir al carrito</div>
@@ -130,32 +169,27 @@
 
 		<div class="detail_synopsis">
 			<div class="movie_info_title">Sinopsis</div>
-			<div class="movie_info_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend, dolor ac fermentum accumsan, risus mi lacinia justo, a mollis justo mi a lorem. Maecenas elementum tempus facilisis. Nam pellentesque ligula felis, ut aliquam massa eleifend in. Nullam a laoreet mauris, non bibendum ligula. Maecenas lacinia orci arcu, a egestas elit gravida id. Nunc id odio mauris. Proin consequat in diam sed vulputate. Duis leo tortor, maximus nec pretium ac, pretium eu urna. Pellentesque eu ex pellentesque, cursus lacus ut, molestie neque. Mauris magna metus, aliquet fringilla lectus feugiat, sodales blandit magna. </div>
+			<div class="movie_info_text">
+				<?php
+					echo $synopsis;
+				?>
+			</div>
 		</div>
 
 		<div class="detail_cast">
 			<div class="movie_info_title">Reparto</div>
 			<div id="movie_info_cast">
-				<div class="movie_info_cast_item">
+				<?php
+					
+					foreach ($actors as $actor) {
+						echo "<div class=\"movie_info_cast_item\"><div class=\"circle\"></div><div id=\"cast_item_text\">" . "yeah" . "</div></div>";
+					}
+				
+				?>
+				<!--<div class="movie_info_cast_item">
 					<div class="circle"></div>
 					<div id="cast_item_text">Actor</div>
-				</div>
-				<div class="movie_info_cast_item">
-					<div class="circle"></div>
-					<div id="cast_item_text">Actor</div>
-				</div>
-				<div class="movie_info_cast_item">
-					<div class="circle"></div>
-					<div id="cast_item_text">Actor</div>
-				</div>
-				<div class="movie_info_cast_item">
-					<div class="circle"></div>
-					<div id="cast_item_text">Actor</div>
-				</div>
-				<div class="movie_info_cast_item">
-					<div class="circle"></div>
-					<div id="cast_item_text">Actor</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 

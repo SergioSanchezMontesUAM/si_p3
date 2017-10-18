@@ -123,7 +123,22 @@
 			<h1>ÚLTIMAS PELÍCULAS</h1>
 		</div>
 
-		<div class="last_movies_row">
+		<?php
+			
+			if(file_exists('catalogo.xml')){
+				$catalogo = simplexml_load_file('catalogo.xml');
+				$i = 0;
+				foreach ($catalogo->pelicula as $pelicula) {
+					$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+					$i++;
+					if($i%3 === 0) {
+						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+						$movie_html = "";
+					}
+				}
+			}
+		?>
+	<!--	<div class="last_movies_row">
 			<div class="item_movie">
 				<a href="detail.html">
 					<div class="movie"></div>
@@ -145,77 +160,8 @@
 				<div class="movie_title">Título</div>
 				<div class="movie_price">Precio</div>
 			</div>
-		</div>
-		<div class="last_movies_row">
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-		</div>
-		<div class="last_movies_row">
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-		</div>
-		<div class="last_movies_row">
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-		</div>
-
+		</div>-->
+		
 	</div>
 
 	<div class="footer">

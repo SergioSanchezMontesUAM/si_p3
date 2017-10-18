@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalogo>
+    <pelicula>
+        <id>paris_opera</id>
+        <titulo>The Paris Opera</titulo>
+        <poster>imgs/posters/the_paris_opera_poster.jpg</poster>
+        <sinopsis>
+            Una temporada en la Ópera de París bajo la dirección de Stephane Lissner. Pasando de la danza a la música, a veces ligera, irónica y cruel; la ópera pone en escena las pasiones humanas, y cuenta retazos de la vida, en el corazón de uno de los teatros de ópera más prestigiosos del mundo.
+        </sinopsis>
+        <director>Jean-Stéphane Bron</director>
+        <precio>19,99€</precio>
+        <categoria>Documental</categoria>
+        <anno>2017</anno>
+        <pais>Suiza</pais>
+        <actores>
+            <actor>
+                <nombre>Stéphane Lissner</nombre> 
+                <personaje>Stéphane Lissner</personaje>
+                <foto>img/actors/stephane_lissner.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Benjamin Millepied </nombre> 
+                <personaje>Benjamin Millepied </personaje>
+                <foto>img/actors/benjamin_millepied.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>foreigner</id>
+        <titulo>The Foreigner</titulo>
+        <poster>imgs/posters/the_foreigner_poster.jpg</poster>
+        <sinopsis>
+            La historia del humilde hombre de negocios Quan (Jackie Chan), cuyo pasado erupciona en una venganza desenfrenada después de que su hija muera en un atentado terrorista motivado por aspectos políticos. En su búsqueda de los terroristas, Quan se ve atrapado en un juego del gato y el ratón con un oficial del gobierno británico (Pierce Brosnan), cuyo pasado podría tener algo que ver con los asesinos.
+        </sinopsis>
+        <director>Martin Campbell</director>
+        <precio>15,99€</precio>
+        <categoria>Acción</categoria>
+        <anno>2017</anno>
+        <pais>Reino Unido</pais>
+        <actores>
+            <actor>
+                <nombre>Jackie Chan</nombre> 
+                <personaje>Quan</personaje>
+                <foto>img/actors/jackie_chan.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Pierce Brosnan</nombre> 
+                <personaje>Oficial gobierno británico</personaje>
+                <foto>img/actors/benjamin_millepied.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>marshall</id>
+        <titulo>Marshall</titulo>
+        <poster>imgs/posters/marshall_poster.jpg</poster>
+        <sinopsis>
+            Este drama histórico presenta los inicios de la carrera del abogado de la NAACP Thurgood Marshall (Chadwick Boseman), que se convertirá en el primer juez afroamericano de la Corte Suprema de Estados Unidos. En el Connecticut de 1940, Marshall defiende a un chófer negro (Sterling K. Brown) que es acusado de violar e intentar asesinar a su jefa blanca (Kate Hudson).
+        </sinopsis>
+        <director>Reginald Hudlin</director>
+        <precio>16,99€</precio>
+        <categoria>Acción</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Chadwick Boseman</nombre> 
+                <personaje>Thurgood Marshall</personaje>
+                <foto>img/actors/chadwick_boseman.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Kate Hudson</nombre> 
+                <personaje>Jefa</personaje>
+                <foto>img/actors/kate_hudson.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Sterling K. Brown</nombre> 
+                <personaje>Chófer</personaje>
+                <foto>img/actors/sterling_k_brown.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>professor_marton</id>
+        <titulo>Professor Marton</titulo>
+        <poster>imgs/posters/professor_marton_poster.jpg</poster>
+        <sinopsis>
+            Biopic sobre el Dr. William Marston, psicólogo de Harvard e inventor a quien se le atribuye también la creación del personaje de Wonder Woman en 1941.
+        </sinopsis>
+        <director>Angela Robinson</director>
+        <precio>11,99€</precio>
+        <categoria>Drama</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Luke Evans</nombre> 
+                <personaje>Dr. William Marston</personaje>
+                <foto>img/actors/luke_evans.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>breathe</id>
+        <titulo>Breathe</titulo>
+        <poster>imgs/posters/breathe_poster.jpg</poster>
+        <sinopsis>
+            Cuenta la historia real de Robin (Andrew Garfield), un joven atractivo, brillante y aventurero cuya vida da un giro drástico cuando la polio le deja paralizado.         </sinopsis>
+        <director>Andy Serkis</director>
+        <precio>15,99€</precio>
+        <categoria>Drama</categoria>
+        <anno>2017</anno>
+        <pais>Reino Unido</pais>
+        <actores>
+            <actor>
+                <nombre>Andrew Garfield</nombre> 
+                <personaje>Robin</personaje>
+                <foto>img/actors/andrew_garfield.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>tom_finland</id>
+        <titulo>Tom of Finland</titulo>
+        <poster>imgs/posters/tom_of_finland_poster.jpg</poster>
+        <sinopsis>
+            La película sigue los pasos de Touko Laaksonen, figura pionera de la cultura gay, que sufrió la opresión y homofobia durante su juventud. Volvió como héroe de la Segunda Guerra Mundial, pero la vida en Finlandia en tiempos de paz no fue como esperaba. Perseguido por su homosexualidad, se encontró sumergido en relaciones secretas y presionado para casarse con una mujer. Encontró una válvula de escape a través de su arte, especialmente por sus dibujos homoeróticos con un estilo marcado por musculados cuerpos masculinos vestidos de cuero. Su fama llegó a ser importante en Estados Unidos bajo su nombre artístico, "Tom of Finland".
+        </sinopsis>
+        <director>Dome Karukoski</director>
+        <precio>14,99€</precio>
+        <categoria>Drama</categoria>
+        <anno>2017</anno>
+        <pais>Finlandia</pais>
+        <actores>
+            <actor>
+                <nombre>Pekka Strang</nombre> 
+                <personaje>Touko Laaksonen</personaje>
+                <foto>img/actors/pekka_strang.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+</catalogo>
