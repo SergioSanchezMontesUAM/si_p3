@@ -1,8 +1,45 @@
+<?php
+	
+	if(isset($_POST['submit_log_in'])){
+		
+		//Construimos la ruta de la carpeta correspondiente al usuario
+	    $path = getcwd() . "/usuarios/" . $_REQUEST['username'];
+	    
+	    //Comprobamos si está registrado
+	    if(!file_exists($path)){
+	        echo "Usuario no registrado";
+	    }
+	    else{
+	        $dat_file = fopen($path . "/datos.dat", "r");
+	        $i = 0;
+	        while(($line = fgets($dat_file)) !== false){
+	        	
+	        	//Línea de datos.dat correspondiente a la contraseña
+	        	else if($i==1){
+	        		if($line === $_REQUEST['password']){
+			        			
+		    			session_start();
+		    			$_SESSION['username'] = $_REQUEST['username']; 
+					
+						header('Location: index.php');
+
+	        		}
+	        		else{
+	        			//contraseña inconrrecta
+	        		}
+	        	}
+	        }
+	    }
+	}
+	
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Registrarse</title>
+	<title>Acceder</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="sign_up_container">
@@ -14,7 +51,7 @@
 
 	<div class="log_in_card_div">
 
-		<form action="process_log_in.php" method="post">
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 				
 			<table id="sign_up_table">
 				<tr>
@@ -39,7 +76,7 @@
 				<tr>
 					<td id="log_in_table_forgot_done">
 						<div id="sign_up_forgot_pass">Has olvidado tu contraseña?</div>
-						<input type="submit" name="submit_sign_up" id="sign_up_done_btn" value="Hecho">
+						<input type="submit" name="submit_log_in" id="sign_up_done_btn" value="Hecho">
 					</td>
 				</tr>
 			</table>
