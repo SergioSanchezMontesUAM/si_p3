@@ -2,8 +2,11 @@
 	
 	if(isset($_POST['submit_log_in'])){
 		
+		$username = $_REQUEST['username'];
+		$password = $_REQUEST['password'];
+		
 		//Construimos la ruta de la carpeta correspondiente al usuario
-	    $path = getcwd() . "/usuarios/" . $_REQUEST['username'];
+	    $path = getcwd() . "/usuarios/" . $username;
 	    
 	    //Comprobamos si está registrado
 	    if(!file_exists($path)){
@@ -14,12 +17,14 @@
 	        $i = 0;
 	        while(($line = fgets($dat_file)) !== false){
 	        	
+
 	        	//Línea de datos.dat correspondiente a la contraseña
-	        	else if($i==1){
-	        		if($line === $_REQUEST['password']){
+	        	if($i == 1){
+	        		
+	        		if(strncmp($line, $password, strlen($password)-1) == 0){
 			        			
 		    			session_start();
-		    			$_SESSION['username'] = $_REQUEST['username']; 
+		    			$_SESSION['username'] = $username; 
 					
 						header('Location: index.php');
 
@@ -27,7 +32,10 @@
 	        		else{
 	        			//contraseña inconrrecta
 	        		}
+	        		
 	        	}
+	        	
+	        	$i++;
 	        }
 	    }
 	}
@@ -44,7 +52,7 @@
 </head>
 <body class="sign_up_container">
 
-	<a href="index.html" class="header_only_title">
+	<a href="index.php" class="header_only_title">
 		<div id="header_second_column_logo"></div>
 		<div id="header_second_column_name">MOVIE ARCHIVE</div>
 	</a>

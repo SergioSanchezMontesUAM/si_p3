@@ -1,7 +1,9 @@
 <?php
 
-	session_start();
-	
+	if (session_status() == PHP_SESSION_NONE | session_id() == '') {
+    	session_start();
+	}
+
 	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
 	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
 	
@@ -53,14 +55,14 @@
 			</div>
 			<div class="header_column">
 				<div id="header_third_column">
-					<a href="log_in.html" id="header_login">
+					<a href="login_or_profile.php" id="header_login">
 							<div>
 								<?php
 									echo $usernameORlogin;
 								?>
 							</div>
 					</a>
-					<a href="sign_up.html" id="header_signup">
+					<a href="signup_or_logout.php" id="header_signup">
 						<div>
 							<?php
 								echo $signupORlogout;

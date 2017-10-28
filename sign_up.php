@@ -47,7 +47,7 @@
 </head>
 <body class="sign_up_container">
 
-	<a href="index.html" class="header_only_title">
+	<a href="index.php" class="header_only_title">
 		<div id="header_second_column_logo"></div>
 		<div id="header_second_column_name">MOVIE ARCHIVE</div>
 	</a>
