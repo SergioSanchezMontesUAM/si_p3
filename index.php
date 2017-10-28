@@ -18,7 +18,7 @@
 	      rel="stylesheet">
 	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	    <script src="js/main.js"></script>
-	      
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 	</head>
 	<body>
 	

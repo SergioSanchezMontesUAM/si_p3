@@ -27,11 +27,17 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Movie archive</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>Movie archive</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	    <script src="js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+		
+	</head>
 <body>
 
 	<div class="header">
@@ -167,12 +173,12 @@
 						?>
 					</div>
 					<div id="detail_cart_buy_btns">
-						<a id="add_to_cart_btn" href="#">
-							<div>Añadir al carrito</div>
-						</a>
-						<a id="buy_btn" href="#">
-							<div>Comprar</div>
-						</a>
+						<div id="add_to_cart_btn" onclick="addToCartScript()">
+							Añadir al carrito
+						</div>
+						<div id="buy_btn">
+							Comprar
+						</div>
 					</div>
 				</div>
 			</div>
@@ -262,5 +268,22 @@
 				</div>
 			</div>
 	</div>
+	
+	
+		<script>
+			function addToCartScript(){
+				
+				
+				if ($.cookie('cart_items_cookie') == null){
+					var cartItems = [];
+				}
+				else{
+					var cartItems =  JSON.parse($.cookie('cart_items_cookie'));
+				}
+				
+				cartItems.push("<?php echo $id; ?>");
+				$.cookie('cart_items_cookie', JSON.stringify(cartItems));
+			}
+		</script>
 </body>
 </html>
