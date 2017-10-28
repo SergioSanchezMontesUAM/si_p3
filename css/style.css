@@ -665,7 +665,7 @@ h2{
 	font-weight: bold;
 }
 
-#results_text{
+.results_text{
 	display: flex;
 	position: fixed;
 	top: 16%;

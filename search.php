@@ -162,7 +162,7 @@
                 $catalogo = simplexml_load_file("catalogo.xml");
     
                 if(strcmp($genre, "none") == 0){
-                    echo("<div id=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
+                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
                     
                     $i = 0;
                     foreach ($catalogo->pelicula as $pelicula) {
@@ -180,9 +180,26 @@
 						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
                     }
                 }
+                
                 else{
-                    echo("<div class=\"sentence\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
+                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
+                
+                	foreach ($catalogo->pelicula as $pelicula) {
+                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower($pelicula->categoria), $genre) == 0) {
+                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+    						$i++;
+    						if($i%3 === 0) {
+    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+    							$movie_html = "";
+    						}
+                        }
+                    }
+                    
+	                    if($i%3 !== 0){
+							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+	                    }
                 }
+                	
             ?>
 	        		
 		</div>
