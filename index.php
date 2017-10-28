@@ -13,6 +13,11 @@
 	<meta charset="utf-8">
 	<title>Movie archive</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="main.js"></script>
+      
 </head>
 <body>
 
@@ -21,6 +26,22 @@
 		<div class="header_column">
 			<div id="header_first_column">
 				<input class="header_search_input" type="search" placeholder="buscar">
+				<select>
+					<option value="none" selected>Todas las categorías</option>
+					<option value="action">Acción</option>
+					<option value="adventure">Aventura</option>
+					<option value="war">Bélico</option>
+					<option value="science_fiction">Ciencia ficción</option>
+					<option value="drama">Dramático</option>
+					<option value="children">Infantil</option>
+					<option value="mistery">Mistery</option>
+					<option value="romantic">Romance</option>
+					<option value="thriller">Supense</option>
+					<option value="terror">Terror</option>
+				</select>
+				<button>
+					<i class="material-icons">search</i>
+				</button>
 			</div>
 		</div>
 		<div class="header_column">
@@ -46,7 +67,7 @@
 					</div>
 				</a>
 				<a href="cart.html" id="header_cart">
-					<div id="cart_btn"></div>
+					<i class="material-icons">shopping_cart</i>
 				</a>
 			</div>
 		</div>
@@ -138,29 +159,6 @@
 				}
 			}
 		?>
-	<!--	<div class="last_movies_row">
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-			<div class="item_movie">
-				<a href="detail.html">
-					<div class="movie"></div>
-				</a>
-				<div class="movie_title">Título</div>
-				<div class="movie_price">Precio</div>
-			</div>
-		</div>-->
 		
 	</div>
 

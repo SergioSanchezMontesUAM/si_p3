@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		<div class="header_column">
-			<a href="index.html" id="header_second_column">
+			<a href="index.php" id="header_second_column">
 				<div id="header_second_column_logo"></div>
 				<div id="header_second_column_name">MOVIE ARCHIVE</div>
 			</a>
@@ -181,8 +181,8 @@
 			<div id="movie_info_cast">
 				<?php
 					
-					foreach ($actors as $actor) {
-						echo "<div class=\"movie_info_cast_item\"><div class=\"circle\"></div><div id=\"cast_item_text\">" . "yeah" . "</div></div>";
+					foreach ($actors->actor as $actor) {
+						echo "<div class=\"movie_info_cast_item\"><div class=\"circle\"></div><div id=\"cast_item_text\">" . $actor->nombre . "</div></div>";
 					}
 				
 				?>
