@@ -16,12 +16,21 @@
                     echo($movie . " | Movie Archive");
                 }
                 else{
-                    echo($genre . ": " . $movie . " | Movie Archive");
+                	if(is_null($movie)){
+                    	echo($genre . " | Movie Archive");
+                	}
+                	else{
+						echo($genre . ": " . $movie . " | Movie Archive");
+                	}
                 }
                 
             ?>
         </title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	    <script src="js/main.js"></script>
     </head>
     
     <body>
@@ -52,7 +61,7 @@
 				</div>
 			</div>
 			<div class="header_column">
-				<a href="#"  id="header_second_column">
+				<a href="index.php"  id="header_second_column">
 					<div id="header_second_column_logo"></div>
 					<div id="header_second_column_name">MOVIE ARCHIVE</div>
 				</a>
@@ -82,7 +91,7 @@
     	
     	<div class="menu">
     		<table class="menu_table">
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=accion">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
         					<path fill="#ffffff" d="M14.04,12H10V11H5.5A3.5,3.5 0 0,1 2,7.5A3.5,3.5 0 0,1 5.5,4C6.53,4 7.45,4.44 8.09,5.15C8.5,3.35 10.08,2 12,2C13.92,2 15.5,3.35 15.91,5.15C16.55,4.44 17.47,4 18.5,4A3.5,3.5 0 0,1 22,7.5A3.5,3.5 0 0,1 18.5,11H14.04V12M10,16.9V15.76H5V13.76H19V15.76H14.04V16.92L20,19.08C20.58,19.29 21,19.84 21,20.5A1.5,1.5 0 0,1 19.5,22H4.5A1.5,1.5 0 0,1 3,20.5C3,19.84 3.42,19.29 4,19.08L10,16.9Z" />
@@ -90,7 +99,7 @@
     				</td>
     				<td>Acción</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=aventura">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M15,19L9,16.89V5L15,7.11M20.5,3C20.44,3 20.39,3 20.34,3L15,5.1L9,3L3.36,4.9C3.15,4.97 3,5.15 3,5.38V20.5A0.5,0.5 0 0,0 3.5,21C3.55,21 3.61,21 3.66,20.97L9,18.9L15,21L20.64,19.1C20.85,19 21,18.85 21,18.62V3.5A0.5,0.5 0 0,0 20.5,3Z" />
@@ -98,7 +107,7 @@
     				</td>
     				<td>Aventura</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=belico">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M7,5H23V9H22V10H16A1,1 0 0,0 15,11V12A2,2 0 0,1 13,14H9.62C9.24,14 8.89,14.22 8.72,14.56L6.27,19.45C6.1,19.79 5.76,20 5.38,20H2C2,20 -1,20 3,14C3,14 6,10 2,10V5H3L3.5,4H6.5L7,5M14,12V11A1,1 0 0,0 13,10H12C12,10 11,11 12,12A2,2 0 0,1 10,10A1,1 0 0,0 9,11V12A1,1 0 0,0 10,13H13A1,1 0 0,0 14,12Z" />
@@ -106,7 +115,7 @@
     				</td>
     				<td>Bélico</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=ciencia_ficcion">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z" />
@@ -114,7 +123,7 @@
     				</td>
     				<td>Ciencia ficción</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=dramatico">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
@@ -122,7 +131,7 @@
     				</td>
     				<td>Dramático</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=infantil">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
         					<path fill="#ffffff" d="M18.5,4A2.5,2.5 0 0,1 21,6.5A2.5,2.5 0 0,1 18.5,9A2.5,2.5 0 0,1 16,6.5A2.5,2.5 0 0,1 18.5,4M4.5,20A1.5,1.5 0 0,1 3,18.5A1.5,1.5 0 0,1 4.5,17H11.5A1.5,1.5 0 0,1 13,18.5A1.5,1.5 0 0,1 11.5,20H4.5M16.09,19L14.69,15H11L6.75,10.75C6.75,10.75 9,8.25 12.5,8.25C15.5,8.25 15.85,9.25 16.06,9.87L18.92,18C19.2,18.78 18.78,19.64 18,19.92C17.22,20.19 16.36,19.78 16.09,19Z" />
@@ -130,7 +139,7 @@
     				</td>
     				<td>Infantil</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=misterio">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
         					<path fill="#ffffff" d="M12,3C9.31,3 7.41,4.22 7.41,4.22L6,9H18L16.59,4.22C16.59,4.22 14.69,3 12,3M12,11C9.27,11 5.39,11.54 5.13,11.59C4.09,11.87 3.25,12.15 2.59,12.41C1.58,12.75 1,13 1,13H23C23,13 22.42,12.75 21.41,12.41C20.75,12.15 19.89,11.87 18.84,11.59C18.84,11.59 14.82,11 12,11M7.5,14A3.5,3.5 0 0,0 4,17.5A3.5,3.5 0 0,0 7.5,21A3.5,3.5 0 0,0 11,17.5C11,17.34 11,17.18 10.97,17.03C11.29,16.96 11.63,16.9 12,16.91C12.37,16.91 12.71,16.96 13.03,17.03C13,17.18 13,17.34 13,17.5A3.5,3.5 0 0,0 16.5,21A3.5,3.5 0 0,0 20,17.5A3.5,3.5 0 0,0 16.5,14C15.03,14 13.77,14.9 13.25,16.19C12.93,16.09 12.55,16 12,16C11.45,16 11.07,16.09 10.75,16.19C10.23,14.9 8.97,14 7.5,14M7.5,15A2.5,2.5 0 0,1 10,17.5A2.5,2.5 0 0,1 7.5,20A2.5,2.5 0 0,1 5,17.5A2.5,2.5 0 0,1 7.5,15M16.5,15A2.5,2.5 0 0,1 19,17.5A2.5,2.5 0 0,1 16.5,20A2.5,2.5 0 0,1 14,17.5A2.5,2.5 0 0,1 16.5,15Z" />
@@ -138,14 +147,14 @@
     				</td>
     				<td>Misterio</td>
     			</tr>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=romantico">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" />
     					</svg>
     				</td>
     				<td>Romántico</td>
-    			<tr>
+    			<tr class="clickable-row" data-href="search.php?genre=terror">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M12,2A9,9 0 0,0 3,11C3,14.03 4.53,16.82 7,18.47V22H9V19H11V22H13V19H15V22H17V18.46C19.47,16.81 21,14 21,11A9,9 0 0,0 12,2M8,11A2,2 0 0,1 10,13A2,2 0 0,1 8,15A2,2 0 0,1 6,13A2,2 0 0,1 8,11M16,11A2,2 0 0,1 18,13A2,2 0 0,1 16,15A2,2 0 0,1 14,13A2,2 0 0,1 16,11M12,14L13.5,17H10.5L12,14Z" />
@@ -156,17 +165,20 @@
     		</table>
     	</div>
     	
+    	
 		<div class="content">
 			
 	        <?php
                 $catalogo = simplexml_load_file("catalogo.xml");
-    
-                if(strcmp($genre, "none") == 0){
-                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
-                    
-                    $i = 0;
+                
+                //Buscando solo por categoria (viene del menu lateral)
+    			if(is_null($movie)){
+    				
+    				echo "<div id=\"last_movies_title\"><h1>" . str_replace("_", " ", strtoupper($genre)) . "</h1></div>";
+    				
+    				$i = 0;
                     foreach ($catalogo->pelicula as $pelicula) {
-                        if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false){
+                        if(strcmp(strtolower($pelicula->categoria), $genre) == 0){
                             $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
     						$i++;
     						if($i%3 === 0) {
@@ -179,26 +191,49 @@
                     if($i%3 !== 0){
 						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
                     }
-                }
-                
-                else{
-                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
-                
-                	foreach ($catalogo->pelicula as $pelicula) {
-                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower($pelicula->categoria), $genre) == 0) {
-                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-    						$i++;
-    						if($i%3 === 0) {
-    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-    							$movie_html = "";
-    						}
-                        }
-                    }
-                    
+    				
+    			}
+    			
+    			else{
+	                if(strcmp($genre, "none") == 0){
+	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
+	                    
+	                    $i = 0;
+	                    foreach ($catalogo->pelicula as $pelicula) {
+	                        if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false){
+	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+	    						$i++;
+	    						if($i%3 === 0) {
+	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+	    							$movie_html = "";
+	    						}
+	                        }
+	                    }
+	                    
 	                    if($i%3 !== 0){
 							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
 	                    }
-                }
+	                }
+	                
+	                else{
+	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
+	                
+	                	foreach ($catalogo->pelicula as $pelicula) {
+	                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower($pelicula->categoria), $genre) == 0) {
+	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+	    						$i++;
+	    						if($i%3 === 0) {
+	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+	    							$movie_html = "";
+	    						}
+	                        }
+	                    }
+	                    
+		                    if($i%3 !== 0){
+								echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+		                    }
+	                }
+    			}
                 	
             ?>
 	        		
