@@ -117,12 +117,13 @@
 }
 
 #last_movies_title{
-	width: 87%;
+	width: 100%;
+	top: 16%;
 }
 
 .last_movies_row{
 	display: flex;
-	width: 87%;
+	width: 100%;
 	justify-content: center;
 }
 
@@ -496,8 +497,12 @@ input[type=submit]{
 	align-items: center;
 }
 
-.sign_up_footer_text{
+.sentence{
 	display: flex;
+}
+
+.bold{
+	font-weight: bold;
 }
 
 .cart_card{
@@ -647,11 +652,23 @@ h2{
 	overflow-y: auto;
 }
 
-
 .log_in_card_div{
 	bottom: 15%;
 	height: 70%;
 	position: fixed;
 	width: 100%;
 	padding: 10px;
+}
+
+#movie_result{
+	color: #FFB717;
+	font-weight: bold;
+}
+
+#results_text{
+	display: flex;
+	position: fixed;
+	top: 16%;
+	margin-left: 16px;
+	
 }

@@ -86,7 +86,7 @@
 	</div>
 
 	<div class="sign_up_footer">
-		<div class="sign_up_footer_text">
+		<div class="sentence">
 			<p>Aún no tienes una cuena? &nbsp;¡</p>
 			<a id="sign_up_login_btn" href="sign_up.html">
 				<p>Regístrate</p>
