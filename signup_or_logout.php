@@ -1,7 +1,9 @@
 <?php
 
+    session_start();
+    
     //Boton sign up
-    if(session_status() == PHP_SESSION_NONE){
+    if(!isset($_SESSION['username'])){
         header('Location: sign_up.php');
     }
     

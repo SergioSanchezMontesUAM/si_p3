@@ -1,27 +1,16 @@
-<?php
-
-	session_start();
-	
-	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
-	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
-	
-	
-?>
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Movie archive</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	      rel="stylesheet">
-	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	    <script src="js/main.js"></script>
-	      
-	</head>
-	<body>
-	
+<head>
+	<meta charset="utf-8">
+	<title>Movie archive</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
 		<div class="header">
 	
 			<div class="header_column">
@@ -151,75 +140,167 @@
     		</table>
     	</div>
     	
-		<div class="content">
-	
-			<div id="last_movies_title">
-				<h1>ÚLTIMAS PELÍCULAS</h1>
-			</div>
-	
-			<?php
-				
-				if(file_exists('catalogo.xml')){
-					$catalogo = simplexml_load_file('catalogo.xml');
-					$i = 0;
-					foreach ($catalogo->pelicula as $pelicula) {
-						$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-						$i++;
-						if($i%3 === 0) {
-							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-							$movie_html = "";
-						}
-					}
-				}
-			?>
+   	<div class="content">
+
+		<div class="cart_card">
+			<h2>Carrito</h2>
+
+			<div id="cart_empty_text">Ningún artículo en el carrito</div>	
+
 		</div>
-	
-		<div class="footer">
-			<div class="footer_left">
-				<div class="footer_left_top">
-					<a href="#" class="footer_link">
-						<div>Ayuda</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Mi cuenta</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Sobre nosotros</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Política de cookies</div>
-					</a>
-				</div>
-				<div class="footer_left_bottom">
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/visa.png" alt="VISA">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/mastercard.png" alt="MASTERCARD">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/paypal.png" alt="PAYPAL">
-					</div>
-				</div>
+
+		<div class="history_card">
+					
+			<table id="history_large_table">
+				<tr>
+					<td colspan="5">
+						<h2>Historial</h2>
+					</td>
+				</tr>
+
+				<tr class="history_table_title_row">
+					<th>Fecha</th>
+					<th>Nombre</th>
+					<th>Estado</th>
+					<th>Método de pago</th>
+					<th>Precio</th>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="on_going">Pendiente</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="on_going">Pendiente</td>
+					<td>Visa</td>
+					<td>9,99</td>
+
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<div class="footer_left">
+			<div class="footer_left_top">
+				<a href="#" class="footer_link">
+					<div>Ayuda</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Mi cuenta</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Sobre nosotros</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Política de cookies</div>
+				</a>
 			</div>
-			
-			<div class="footer_right">
-				<div class="footer_right_top">
-					<div id="moviearchive_hashtag">#moviearchive</div>
+			<div class="footer_left_bottom">
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/visa.png" alt="VISA">
 				</div>
-				<div class="footer_right_bottom">
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/facebook.png" alt="FACEBOOK">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/twitter.png" alt="TWITTER">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/instagram.png" alt="INSTAGRAM">
-					</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/mastercard.png" alt="MASTERCARD">
+				</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/paypal.png" alt="PAYPAL">
 				</div>
 			</div>
 		</div>
-	
-	</body>
+		
+		<div class="footer_right">
+			<div class="footer_right_top">
+				<div id="moviearchive_hashtag">#moviearchive</div>
+			</div>
+			<div class="footer_right_bottom">
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/facebook.png" alt="FACEBOOK">
+				</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/twitter.png" alt="TWITTER">
+				</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/instagram.png" alt="INSTAGRAM">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
