@@ -8,6 +8,7 @@
       rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@
 				</div>
 			</div>
 			<div class="header_column">
-				<a href="#"  id="header_second_column">
+				<a href="index.php"  id="header_second_column">
 					<div id="header_second_column_logo"></div>
 					<div id="header_second_column_name">MOVIE ARCHIVE</div>
 				</a>
@@ -143,9 +144,73 @@
    	<div class="content">
 
 		<div class="cart_card">
-			<h2>Carrito</h2>
 
-			<div id="cart_empty_text">Ningún artículo en el carrito</div>	
+			<table id="history_large_table">
+				<tr>
+					<td colspan="4">
+						<h2>Carrito</h2>
+					</td>
+				</tr>
+				
+				
+				<tr class="history_table_title_row" id="bitch">
+					<th>Item</th>
+					<th>Precio</th>
+					<th>Cantidad</th>
+					<th></th>
+				</tr>
+				
+				<!--<script type="text/javascript" src="js/fillCart.js"></script>-->
+
+				<?php
+					if(isset($_COOKIE['cart_items_cookie'])){
+						$array = json_decode($_COOKIE['cart_items_cookie']);
+						foreach ($array as $key => $movie_id) {
+							$catalogo = simplexml_load_file('catalogo.xml');
+	
+							$peliculas = $catalogo->xpath("/catalogo/pelicula[id=\"" . $movie_id . "\"]");
+							    
+							foreach($peliculas as $pelicula){
+								$title = $pelicula->titulo;
+								$poster = $pelicula->poster;
+								$price = $pelicula->precio;
+							}
+							
+							echo "<tr class=\"history_table_row\"><td id=\"cart_movie\"><div id=\"cart_movie_picture\"></div><p id=\"cart_movie_title\">" . $title . "</p></td><td>" . $price . "</td><td><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>+10</option></select></td><td><button>x</button></td></tr>";
+						}
+					}
+					
+					else{
+						echo "<div id=\"cart_empty_text\">Ningún artículo en el carrito</div>";
+					}
+				?>	
+
+				
+				<!--<tr class="history_table_row">
+					<td id="cart_movie">
+						<div id="cart_movie_picture"></div>
+						<p id="cart_movie_title">Hey loco</p>
+					</td>
+					<td>19,99</td>
+					<td>
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>+10</option>
+						</select>
+					</td>
+					<td>
+						<button>x</button>
+					</td>
+				</tr>-->
+			</table>
 
 		</div>
 

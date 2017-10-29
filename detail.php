@@ -61,8 +61,8 @@
 				<a href="sign_up.html" id="header_signup">
 					<div>registrarse</div>
 				</a>
-				<a href="#" id="header_cart">
-					<div id="cart_btn"></div>
+				<a href="cart.php" id="header_cart">
+					<i class="material-icons">shopping_cart</i>
 				</a>
 			</div>
 		</div>
@@ -176,7 +176,7 @@
 						<div id="add_to_cart_btn" onclick="addToCartScript()">
 							Añadir al carrito
 						</div>
-						<div id="buy_btn">
+						<div id="buy_btn" onclick="buyScript()">
 							Comprar
 						</div>
 					</div>
@@ -203,10 +203,6 @@
 					}
 				
 				?>
-				<!--<div class="movie_info_cast_item">
-					<div class="circle"></div>
-					<div id="cast_item_text">Actor</div>
-				</div>-->
 			</div>
 		</div>
 
@@ -269,11 +265,9 @@
 			</div>
 	</div>
 	
-	
 		<script>
+		
 			function addToCartScript(){
-				
-				
 				if ($.cookie('cart_items_cookie') == null){
 					var cartItems = [];
 				}
@@ -284,6 +278,12 @@
 				cartItems.push("<?php echo $id; ?>");
 				$.cookie('cart_items_cookie', JSON.stringify(cartItems));
 			}
+			
+			function buyScript(){
+				addToCartScript()
+				window.location = "cart.php"
+			}
+			
 		</script>
 </body>
 </html>

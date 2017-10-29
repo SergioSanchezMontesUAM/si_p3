@@ -14,7 +14,7 @@ $(function(){
         $(this).css('cursor','pointer')
     })
     
-    $('#buy_btn').click(function(){
+    $('#cart_empty_text').click(function(){
         console.log(JSON.parse($.cookie('cart_items_cookie')))
     })
     

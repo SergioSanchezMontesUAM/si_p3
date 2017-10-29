@@ -529,7 +529,7 @@ input[type=submit]{
 
 #history_large_table{
 	table-layout: fixed;
-	width: 100%;
+	width: 120%;
 }
 
 h2{
@@ -671,4 +671,20 @@ h2{
 	top: 16%;
 	margin-left: 16px;
 	
+}
+
+.cart_movie_picture{
+	width: 70px;
+	height: 100px;
+	background-color: #393733;
+	margin: 30px;
+}
+
+.cart_movie{
+	display: flex;
+}
+
+.cart_movie_title{
+	margin-top: auto;
+	margin-bottom: auto;
 }
