@@ -1,5 +1,11 @@
 <?php
 
+	session_start();
+	
+	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
+	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
+	
+	
 	$id = $_GET['id'];
 
 	if(!isset($id)){
@@ -55,12 +61,20 @@
 		</div>
 		<div class="header_column">
 			<div id="header_third_column">
-				<a href="#" id="header_login">
-						<div>acceder</div>
-				</a>
-				<a href="sign_up.html" id="header_signup">
-					<div>registrarse</div>
-				</a>
+				<a href="login_or_profile.php" id="header_login">
+							<div>
+								<?php
+									echo $usernameORlogin;
+								?>
+							</div>
+					</a>
+					<a href="signup_or_logout.php" id="header_signup">
+						<div>
+							<?php
+								echo $signupORlogout;
+							?>
+						</div>
+					</a>
 				<a href="cart.php" id="header_cart">
 					<i class="material-icons">shopping_cart</i>
 				</a>
@@ -172,11 +186,11 @@
 							echo $price;
 						?>
 					</div>
-					<div id="detail_cart_buy_btns">
-						<div id="add_to_cart_btn" onclick="addToCartScript()">
+					<div class="detail_cart_buy_btns">
+						<div class="add_to_cart_btn" onclick="addToCartScript()">
 							Añadir al carrito
 						</div>
-						<div id="buy_btn" onclick="buyScript()">
+						<div class="buy_btn" onclick="buyScript()">
 							Comprar
 						</div>
 					</div>

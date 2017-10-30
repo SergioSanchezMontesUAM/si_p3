@@ -16,7 +16,6 @@
 	        $dat_file = fopen($path . "/datos.dat", "r");
 	        $i = 0;
 	        while(($line = fgets($dat_file)) !== false){
-	        	
 
 	        	//Línea de datos.dat correspondiente a la contraseña
 	        	if($i == 1){
@@ -25,8 +24,16 @@
 			        			
 		    			session_start();
 		    			$_SESSION['username'] = $username; 
-					
-						header('Location: index.php');
+		    			
+		    			//Si viene del carrito porque queria pagar sin estar logeado, le mandamos al carrito de nuevo
+		    			if(isset($_COOKIE['from_cart'])){
+		    				//Eliminamos la cookie
+		    				setcookie('from_cart', "", time()-3600);
+		    				unset($_COOKIE['from_cart']);
+		    				
+							header('Location: cart.php');
+		    			}
+						else header('Location: index.php');
 
 	        		}
 	        		else{

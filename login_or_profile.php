@@ -9,6 +9,6 @@
     
     //Boton profile
     else{
-        header('Location: index.php');
+        header('Location: history.php');
     }
 ?>

@@ -1,16 +1,41 @@
+<?php
+
+	session_start();
+	
+	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
+	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
+	
+	if(isset($_SESSION['username'])){
+		$path = getcwd() . "/usuarios/" . $_SESSION['username'];
+        $dat_file = fopen($path . "/datos.dat", "r");
+        
+        $i = 0;
+        while(($line = fgets($dat_file)) !== false){
+
+        	//Línea de datos.dat correspondiente al saldo
+        	if($i == 4){
+        		$balance = $line;
+        	}
+        	
+        	$i++;
+        }
+	}
+	
+?>
+
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Movie archive</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="js/main.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-</head>
-<body>
+	<head>
+		<meta charset="utf-8">
+		<title>Movie archive</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	      rel="stylesheet">
+	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	    <script src="js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+	</head>
+	<body>
 
 		<div class="header">
 	
@@ -153,7 +178,7 @@
 				</tr>
 				
 				
-				<tr class="history_table_title_row" id="bitch">
+				<tr class="history_table_title_row">
 					<th>Item</th>
 					<th>Precio</th>
 					<th>Cantidad</th>
@@ -164,6 +189,9 @@
 
 				<?php
 					if(isset($_COOKIE['cart_items_cookie'])){
+						
+						$total_price = 0.0;
+						
 						$array = json_decode($_COOKIE['cart_items_cookie']);
 						foreach ($array as $key => $movie_id) {
 							$catalogo = simplexml_load_file('catalogo.xml');
@@ -174,6 +202,8 @@
 								$title = $pelicula->titulo;
 								$poster = $pelicula->poster;
 								$price = $pelicula->precio;
+								
+								$total_price += floatval($price);
 							}
 							
 							echo "<tr class=\"history_table_row\"><td id=\"cart_movie\"><div id=\"cart_movie_picture\"></div><p id=\"cart_movie_title\">" . $title . "</p></td><td>" . $price . "</td><td><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>+10</option></select></td><td><button>x</button></td></tr>";
@@ -185,141 +215,23 @@
 					}
 				?>	
 
-				
-				<!--<tr class="history_table_row">
-					<td id="cart_movie">
-						<div id="cart_movie_picture"></div>
-						<p id="cart_movie_title">Hey loco</p>
-					</td>
-					<td>19,99</td>
-					<td>
-						<select>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>+10</option>
-						</select>
-					</td>
-					<td>
-						<button>x</button>
-					</td>
-				</tr>-->
 			</table>
-
+			
 		</div>
-
-		<div class="history_card">
-					
-			<table id="history_large_table">
-				<tr>
-					<td colspan="5">
-						<h2>Historial</h2>
-					</td>
-				</tr>
-
-				<tr class="history_table_title_row">
-					<th>Fecha</th>
-					<th>Nombre</th>
-					<th>Estado</th>
-					<th>Método de pago</th>
-					<th>Precio</th>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="on_going">Pendiente</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="on_going">Pendiente</td>
-					<td>Visa</td>
-					<td>9,99</td>
-
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-			</table>
-
+		
+		
+		<div id="checkout_card">
+			<p id="total_label">Total: &nbsp;<?php echo $total_price ?>€</p>
+			<div class="detail_cart_buy_btns">
+				<div class="add_to_cart_btn" onclick="continueShoppingScript()">
+					Continuar comprando
+				</div>
+				<div class="buy_btn" onclick="checkoutScript()">
+					Pagar
+				</div>
+			</div>
 		</div>
-
-	</div>
+	</div>	
 
 	<div class="footer">
 		<div class="footer_left">
@@ -367,5 +279,37 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		
+		function continueShoppingScript(){
+			window.location = "index.php"
+		}
+		
+		function checkoutScript(){
+			var session = "<?php echo $_SESSION['username']; ?>"
+			
+			//El usuario esta logeado
+			if(session){
+				var balance = "<?php echo $balance; ?>"
+				var total = "<?php echo $total_price; ?>"
+				
+				if(total <= balance){
+					alert("Compra realizada con éxito")
+					window.location = "add_to_history.php"
+				}
+				else{
+					alert("Lo sentimos, no tienes crédito suficiente para realizar esta compra")
+				}
+			}
+			
+			//El usuario no esta logeado, le mandamos a logearse
+			else{
+				$.cookie('from_cart', "")
+				window.location = "login.php"
+			}
+		}
+		
+	</script>
 </body>
 </html>

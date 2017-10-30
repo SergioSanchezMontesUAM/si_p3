@@ -10,7 +10,7 @@ $(function(){
         $(this).css('cursor','pointer');
     })
     
-    $('#add_to_cart_btn').hover(function(){
+    $('.add_to_cart_btn').hover(function(){
         $(this).css('cursor','pointer')
     })
     
@@ -18,7 +18,7 @@ $(function(){
         console.log(JSON.parse($.cookie('cart_items_cookie')))
     })
     
-    $('#buy_btn').hover(function(){
+    $('.buy_btn').hover(function(){
         $(this).css('cursor','pointer')
     })
 })

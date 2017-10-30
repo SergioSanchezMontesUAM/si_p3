@@ -5,58 +5,37 @@
 	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
 	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
 	
-    $movie = $_GET["movie"];
-    $genre = $_GET["genre"];
-    
+	
 ?>
 
 <!DOCTYPE html>
 <html>
-    
     <head>
-        <meta charset="utf-8">
-        <title>
-            <?php
-                if(strcmp($genre, "none") == 0){
-                    echo($movie . " | Movie Archive");
-                }
-                else{
-                	if(is_null($movie)){
-                    	echo($genre . " | Movie Archive");
-                	}
-                	else{
-						echo($genre . ": " . $movie . " | Movie Archive");
-                	}
-                }
-                
-            ?>
-        </title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+		<meta charset="utf-8">
+		<title>Historial</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"></link>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	      rel="stylesheet">
 	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	    <script src="js/main.js"></script>
     </head>
-    
     <body>
-        
-		<div class="header">
+        	<div class="header">
 	
 			<div class="header_column">
 				<div id="header_first_column">
 					<form metod="get" action="search.php" id="form_search">
 						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
 						<select name="genre" form="form_search">
-							<option value="none" selected>Todas las categorías</option>
-							<option value="action">Acción</option>
-							<option value="adventure">Aventura</option>
-							<option value="war">Bélico</option>
-							<option value="science_fiction">Ciencia ficción</option>
-							<option value="drama">Dramático</option>
-							<option value="children">Infantil</option>
-							<option value="mistery">Mistery</option>
-							<option value="romantic">Romance</option>
-							<option value="thriller">Supense</option>
+							<option value="ninguno" selected>Todas las categorías</option>
+							<option value="acction">Acción</option>
+							<option value="aventura">Aventura</option>
+							<option value="belico">Bélico</option>
+							<option value="ciencia_ficcion">Ciencia ficción</option>
+							<option value="dramatico">Dramático</option>
+							<option value="infantil">Infantil</option>
+							<option value="misterio">Mistery</option>
+							<option value="romantico">Romance</option>
 							<option value="terror">Terror</option>
 						</select>
 						<button type="submit" value="submit_search">
@@ -169,127 +148,158 @@
     			</tr>
     		</table>
     	</div>
-    	
-    	
-		<div class="content">
-			
-	        <?php
-                $catalogo = simplexml_load_file("catalogo.xml");
-                
-                //Buscando solo por categoria (viene del menu lateral)
-    			if(is_null($movie)){
-    				
-    				echo "<div id=\"last_movies_title\"><h1>" . str_replace("_", " ", strtoupper($genre)) . "</h1></div>";
-    				
-    				$i = 0;
-                    foreach ($catalogo->pelicula as $pelicula) {
-                        if(strcmp(strtolower($pelicula->categoria), $genre) == 0){
-                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-    						$i++;
-    						if($i%3 === 0) {
-    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-    							$movie_html = "";
-    						}
-                        }
-                    }
-                    
-                    if($i%3 !== 0){
-						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-                    }
-    				
-    			}
-    			
-    			else{
-	                if(strcmp($genre, "none") == 0){
-	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
-	                    
-	                    $i = 0;
-	                    foreach ($catalogo->pelicula as $pelicula) {
-	                        if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false){
-	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-	    						$i++;
-	    						if($i%3 === 0) {
-	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-	    							$movie_html = "";
-	    						}
-	                        }
-	                    }
-	                    
-	                    if($i%3 !== 0){
-							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-	                    }
-	                }
-	                
-	                else{
-	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
-	                
-	                	foreach ($catalogo->pelicula as $pelicula) {
-	                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower($pelicula->categoria), $genre) == 0) {
-	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-	    						$i++;
-	    						if($i%3 === 0) {
-	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-	    							$movie_html = "";
-	    						}
-	                        }
-	                    }
-	                    
-		                    if($i%3 !== 0){
-								echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-		                    }
-	                }
-    			}
-                	
-            ?>
-	        		
+		<div class="history_card">
+					
+			<table id="history_large_table">
+				<tr>
+					<td colspan="5">
+						<h2>Historial</h2>
+					</td>
+				</tr>
+
+				<tr class="history_table_title_row">
+					<th>Fecha</th>
+					<th>Nombre</th>
+					<th>Estado</th>
+					<th>Método de pago</th>
+					<th>Precio</th>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="on_going">Pendiente</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="on_going">Pendiente</td>
+					<td>Visa</td>
+					<td>9,99</td>
+
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+				<tr class="history_table_row">
+					<td>Fecha</td>
+					<td>Película</td>
+					<td class="delivered">Entregado</td>
+					<td>Visa</td>
+					<td>9,99</td>
+				</tr>
+			</table>
+
 		</div>
-	
-		<div class="footer">
-			<div class="footer_left">
-				<div class="footer_left_top">
-					<a href="#" class="footer_link">
-						<div>Ayuda</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Mi cuenta</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Sobre nosotros</div>
-					</a>
-					<a href="#" class="footer_link">
-						<div>Política de cookies</div>
-					</a>
+
+	</div>
+
+	<div class="footer">
+		<div class="footer_left">
+			<div class="footer_left_top">
+				<a href="#" class="footer_link">
+					<div>Ayuda</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Mi cuenta</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Sobre nosotros</div>
+				</a>
+				<a href="#" class="footer_link">
+					<div>Política de cookies</div>
+				</a>
+			</div>
+			<div class="footer_left_bottom">
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/visa.png" alt="VISA">
 				</div>
-				<div class="footer_left_bottom">
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/visa.png" alt="VISA">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/mastercard.png" alt="MASTERCARD">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/paypal.png" alt="PAYPAL">
-					</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/mastercard.png" alt="MASTERCARD">
+				</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/paypal.png" alt="PAYPAL">
 				</div>
 			</div>
-			
-			<div class="footer_right">
-				<div class="footer_right_top">
-					<div id="moviearchive_hashtag">#moviearchive</div>
+		</div>
+		
+		<div class="footer_right">
+			<div class="footer_right_top">
+				<div id="moviearchive_hashtag">#moviearchive</div>
+			</div>
+			<div class="footer_right_bottom">
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/facebook.png" alt="FACEBOOK">
 				</div>
-				<div class="footer_right_bottom">
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/facebook.png" alt="FACEBOOK">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/twitter.png" alt="TWITTER">
-					</div>
-					<div class="footer_icon">
-						<img src="css/img/footer_icons/instagram.png" alt="INSTAGRAM">
-					</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/twitter.png" alt="TWITTER">
+				</div>
+				<div class="footer_icon">
+					<img src="css/img/footer_icons/instagram.png" alt="INSTAGRAM">
 				</div>
 			</div>
 		</div>
-        
+	</div>
     </body>
 </html>

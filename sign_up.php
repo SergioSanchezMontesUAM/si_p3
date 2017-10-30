@@ -24,8 +24,12 @@
     			$dat_file = fopen($nuevo_usuario_path . "/datos.dat", "w");
     			fwrite($dat_file, $_REQUEST['username']."\n".$_REQUEST['password']."\n".$_REQUEST['email']."\n".$_REQUEST['credit_card_1'].$_REQUEST['credit_card_2'].$_REQUEST['credit_card_3'].$_REQUEST['credit_card_4']."\n".rand(0,100));
 
-    			$history_file = fopen($nuevo_usuario_path . "/historial.xml", "w");
-    			
+				$history_file = new DOMDocument( );
+			    $root = $history_file->createElement('historial');
+			    $root->nodeValue = '';
+			    $history_file->appendChild($root);
+			    $history_file->save($nuevo_usuario_path . "/historial.xml");
+
     			session_start();
     			$_SESSION['username'] = $_REQUEST['username']; 
     			
