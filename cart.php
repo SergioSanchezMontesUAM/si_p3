@@ -306,7 +306,7 @@
 			//El usuario no esta logeado, le mandamos a logearse
 			else{
 				$.cookie('from_cart', "")
-				window.location = "login.php"
+				window.location = "log_in.php"
 			}
 		}
 		
