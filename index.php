@@ -19,13 +19,14 @@
 	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	    <script src="js/main.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  	    <script src="js/users_online.js"></script>
 	</head>
 	<body>
 	
 		<div class="header">
 	
 			<div class="header_column">
-				<div id="header_first_column">
+				<div class="display_flex">
 					<form metod="get" action="search.php" id="form_search">
 						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
 						<select name="genre" form="form_search">
@@ -53,7 +54,7 @@
 				</a>
 			</div>
 			<div class="header_column">
-				<div id="header_third_column">
+				<div class="display_flex">
 					<a href="login_or_profile.php" id="header_login">
 							<div>
 								<?php
@@ -71,6 +72,10 @@
 					<a href="cart.php" id="header_cart">
 						<i class="material-icons">shopping_cart</i>
 					</a>
+					<div id="online_users">
+						<p id="num_users_online">0</p>
+						<p>&nbsp; usuarios conectados</p>
+					</div>
 				</div>
 			</div>
 		</div>

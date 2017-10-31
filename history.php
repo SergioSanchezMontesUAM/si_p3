@@ -18,12 +18,13 @@
 	      rel="stylesheet">
 	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	    <script src="js/main.js"></script>
+  	    <script src="js/users_online.js"></script>
     </head>
     <body>
         	<div class="header">
 	
 			<div class="header_column">
-				<div id="header_first_column">
+				<div class="display_flex">
 					<form metod="get" action="search.php" id="form_search">
 						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
 						<select name="genre" form="form_search">
@@ -51,7 +52,7 @@
 				</a>
 			</div>
 			<div class="header_column">
-				<div id="header_third_column">
+				<div class="display_flex">
 					<a href="login_or_profile.php" id="header_login">
 							<div>
 								<?php
@@ -69,6 +70,10 @@
 					<a href="cart.php" id="header_cart">
 						<i class="material-icons">shopping_cart</i>
 					</a>
+					<div id="online_users">
+						<p id="num_users_online">0</p>
+						<p>&nbsp; usuarios conectados</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -148,107 +153,54 @@
     			</tr>
     		</table>
     	</div>
+    	
 		<div class="history_card">
 					
 			<table id="history_large_table">
 				<tr>
-					<td colspan="5">
+					<td colspan="2">
 						<h2>Historial</h2>
 					</td>
 				</tr>
 
 				<tr class="history_table_title_row">
-					<th>Fecha</th>
-					<th>Nombre</th>
-					<th>Estado</th>
-					<th>Método de pago</th>
+					<th>Item</th>
 					<th>Precio</th>
 				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="on_going">Pendiente</td>
-					<td>Visa</td>
-					<td>9,99</td>
+				
+				<?php
+					
+					if(isset($_SESSION['username']) && file_exists('usuarios/' . $_SESSION['username'] . '/historial.xml')){
+						
+						$historial = simplexml_load_file('usuarios/' . $_SESSION['username'] . '/historial.xml');
+						
+						$i = 1;
+						foreach ($historial->pelicula as $pelicula) {
+							//Imprime la pelicula
+							echo "<tr><td>" . $pelicula->titulo . "</td><td>" . $pelicula->precio . "</td><td><button id=\"show_" . $i . "\"><div>+</div></button></td></tr>";
+							
+							//Imprime la informacion oculta
+							echo "<tr><td colspan=2><div id='extra_" . $i . "' style='display: none'><div class='display_flex'><div class='cart_movie_picture'></div><p class='cart_movie_title'>" . $pelicula->sinopsis . "</p></div></div></td></tr>";
+							
+							$i++;
+						}
+							
+					}
+					
+				?>
+				
+				<tr>
+					<td colspan=2>
+						<div id="extra_1" style="display: none">
+							<div class='display_flex'>
+								<div class="cart_movie_picture"></div>
+								<p class="cart_movie_title">Sinopsis</p>
+							</div>
+						</div>
+					</td>
 				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="on_going">Pendiente</td>
-					<td>Visa</td>
-					<td>9,99</td>
 
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
-				<tr class="history_table_row">
-					<td>Fecha</td>
-					<td>Película</td>
-					<td class="delivered">Entregado</td>
-					<td>Visa</td>
-					<td>9,99</td>
-				</tr>
+				
 			</table>
 
 		</div>
@@ -301,5 +253,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$("button[id^=show_]").click(function(event) {
+		    $("#extra_" + $(this).attr('id').substr(5)).slideToggle("slow")
+		
+		    var text = $("div", $(this).parent()).text() === '-' ? '+' : '-'
+		    $("div", $(this).parent()).text(text)
+		})
+	</script>
     </body>
 </html>

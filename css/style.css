@@ -523,8 +523,8 @@ input[type=submit]{
   	border-radius: 2px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-	width: 85.5%;
-  	margin: 1rem;
+	width: 35%;
+	margin: 10% auto 10% auto;
 }
 
 #history_large_table{
@@ -542,14 +542,6 @@ h2{
 
 .history_table_title_row{
 	text-align: left;
-}
-
-.on_going{
-	color: orange;
-}
-
-.delivered{
-	color: green;
 }
 
 .header{
@@ -600,7 +592,7 @@ h2{
 	align-items: center;
 }
 
-#header_first_column{
+.display_flex{
 	display: flex;
 }
 
@@ -623,10 +615,6 @@ h2{
 #header_second_column:hover{
 	text-decoration: none;
 	color: #feffff;
-}
-
-#header_third_column{
-	display: flex;
 }
 
 .menu{
@@ -753,4 +741,9 @@ h2{
 
 #pswd_info{
 	display: none
+}
+
+#online_users{
+	display: flex;
+	color: white;
 }

@@ -12,7 +12,6 @@
         <categoria>Drama</categoria>
         <anno>2017</anno>
         <pais>Suiza</pais>
-        <actores/>
     </pelicula>
     <pelicula>
         <id>foreigner</id>
@@ -26,7 +25,6 @@
         <categoria>Acci&#xF3;n</categoria>
         <anno>2017</anno>
         <pais>Reino Unido</pais>
-        <actores/>
     </pelicula>
     <pelicula>
         <id>marshall</id>
@@ -40,6 +38,5 @@
         <categoria>Acci&#xF3;n</categoria>
         <anno>2017</anno>
         <pais>Estados Unidos</pais>
-        <actores/>
     </pelicula>
 </historial>
