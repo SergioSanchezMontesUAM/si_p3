@@ -13,7 +13,7 @@
         while(($line = fgets($dat_file)) !== false){
 
         	//Línea de datos.dat correspondiente al saldo
-        	if($i == 4){
+        	if(feof($dat_file)){
         		$balance = $line;
         	}
         	
