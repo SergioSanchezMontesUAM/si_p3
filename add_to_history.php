@@ -44,6 +44,10 @@
                 	}
                 	
                 }
+                
+                //Eliminamos la cookie para vaciar el carrito
+                unset($_COOKIE['cart_items_cookie']);
+                setcookie('cart_items_cookie', '', time() - 3600, '/'); 
             
                 header('Location: cart.php');
         

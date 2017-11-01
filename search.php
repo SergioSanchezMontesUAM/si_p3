@@ -8,6 +8,46 @@
     $movie = $_GET["movie"];
     $genre = $_GET["genre"];
     
+    function normalizar($cadena){
+ 
+	    //Ahora reemplazamos las letras
+	    $cadena = str_replace(
+	        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+	        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+	        $cadena
+	    );
+	 
+	    $cadena = str_replace(
+	        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+	        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+	        $cadena );
+	 
+	    $cadena = str_replace(
+	        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+	        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+	        $cadena );
+	 
+	    $cadena = str_replace(
+	        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+	        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+	        $cadena );
+	 
+	    $cadena = str_replace(
+	        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+	        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+	        $cadena );
+	 
+	    $cadena = str_replace(
+	        array('ñ', 'Ñ', 'ç', 'Ç'),
+	        array('n', 'N', 'c', 'C'),
+	        $cadena
+	    );
+	    
+	    $cadena = str_replace(' ', '_', $cadena);
+	 
+	    return $cadena;
+	}
+    
 ?>
 
 <!DOCTYPE html>
@@ -44,27 +84,24 @@
 		<div class="header">
 	
 			<div class="header_column">
-				<div class="display_flex">
-					<form metod="get" action="search.php" id="form_search">
-						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
-						<select name="genre" form="form_search">
-							<option value="none" selected>Todas las categorías</option>
-							<option value="action">Acción</option>
-							<option value="adventure">Aventura</option>
-							<option value="war">Bélico</option>
-							<option value="science_fiction">Ciencia ficción</option>
-							<option value="drama">Dramático</option>
-							<option value="children">Infantil</option>
-							<option value="mistery">Mistery</option>
-							<option value="romantic">Romance</option>
-							<option value="thriller">Supense</option>
-							<option value="terror">Terror</option>
-						</select>
-						<button type="submit" value="submit_search">
-							<i class="material-icons">search</i>
-						</button>
-					</form>
-				</div>
+				<form class="search_bar" method="get" action="search.php" id="form_search">
+					<select name="genre" form="form_search">
+						<option value="ninguno" selected>Todas las categorías</option>
+						<option value="acction">Acción</option>
+						<option value="aventura">Aventura</option>
+						<option value="belico">Bélico</option>
+						<option value="ciencia_ficcion">Ciencia ficción</option>
+						<option value="dramatico">Dramático</option>
+						<option value="infantil">Infantil</option>
+						<option value="misterio">Misterio</option>
+						<option value="romantico">Romance</option>
+						<option value="terror">Terror</option>
+					</select>
+			
+				  <input type="text" placeholder="Buscar por título" name="movie"/>
+			
+				  <button type="submit" value="submit_search"></button>
+				</form>
 			</div>
 			<div class="header_column">
 				<a href="index.php"  id="header_second_column">
@@ -133,7 +170,7 @@
     				</td>
     				<td>Ciencia ficción</td>
     			</tr>
-    			<tr class="clickable-row" data-href="search.php?genre=dramatico">
+    			<tr class="clickable-row" data-href="search.php?genre=drama">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
@@ -188,8 +225,9 @@
     				
     				$i = 0;
                     foreach ($catalogo->pelicula as $pelicula) {
-                        if(strcmp(strtolower($pelicula->categoria), $genre) == 0){
-                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+                    	
+                        if(strcmp(normalizar(strtolower($pelicula->categoria)), $genre) == 0){
+							$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><img class=\"movie\" src='" . $pelicula->poster . "'></img></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
     						$i++;
     						if($i%3 === 0) {
     							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
@@ -207,11 +245,12 @@
     			else{
 	                if(strcmp($genre, "ninguno") == 0){
 	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;:</p></div>");
-	                    
+	                    echo "<div id=\"last_movies_title\"><h1></h1></div>";
+
 	                    $i = 0;
 	                    foreach ($catalogo->pelicula as $pelicula) {
 	                        if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false){
-	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+								$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><img class=\"movie\" src='" . $pelicula->poster . "'></img></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
 	    						$i++;
 	    						if($i%3 === 0) {
 	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
@@ -227,10 +266,11 @@
 	                
 	                else{
 	                    echo("<div class=\"results_text\"><p>Resultados para &nbsp;</p><p id=\"movie_result\">\"". $movie . "\"</p><p>&nbsp;en&nbsp;</p><p class=\"bold\">" . $genre . "</p><p>: </p></div>");
-	                
+						echo "<div id=\"last_movies_title\"><h1></h1></div>";
+
 	                	foreach ($catalogo->pelicula as $pelicula) {
-	                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower($pelicula->categoria), $genre) == 0) {
-	                            $movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+	                		if(strpos(strtolower($pelicula->titulo), strtolower($movie)) !== false && strcmp(strtolower(normalizar($pelicula->categoria)), $genre) == 0) {
+								$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><img class=\"movie\" src='" . $pelicula->poster . "'></img></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
 	    						$i++;
 	    						if($i%3 === 0) {
 	    							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";

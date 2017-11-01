@@ -1,7 +1,7 @@
 /**{
 	border: 1px solid red;
-}*/
-
+}
+*/
 *{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -117,8 +117,6 @@
 }
 
 #last_movies_title{
-	width: 100%;
-	top: 16%;
 }
 
 .last_movies_row{
@@ -130,7 +128,6 @@
 .movie{
 	width: 175px;
 	height: 250px;
-	background-color: #393733;
 	margin-left: 50px;
 	margin-right: 50px;
 	border-radius: 5px;
@@ -273,8 +270,8 @@ body{
 .detail_movie_picture{
 	width: 175px;
 	height: 250px;
-	background-color: #393733;
 	margin: 30px;
+	border-radius: 5px;
 }
 
 .detail_movie_info_2{
@@ -624,6 +621,7 @@ h2{
 	left: 0;
 	position: fixed;
 	background-color: #212121;
+	Z-index: -999
 }
 
 .menu_table{
@@ -638,6 +636,7 @@ h2{
 	bottom: 15%;
 	max-height: 70%;
 	overflow-y: auto;
+	top: 15%;
 }
 
 .log_in_card_div{
@@ -664,7 +663,6 @@ h2{
 .cart_movie_picture{
 	width: 70px;
 	height: 100px;
-	background-color: #393733;
 	margin: 30px;
 }
 
@@ -746,4 +744,147 @@ h2{
 #online_users{
 	display: flex;
 	color: white;
+}
+
+#form_search{
+	display: flex;
+}
+
+.search_bar {
+  background: #fff;
+  position: relative;
+  max-width: 520px;
+}
+.search_bar input[type=text] {
+  border: none;
+  box-shadow: none;
+  font-weight: 600;
+  font-size: 14px;
+  width: 80%;
+  padding: .5em;
+  margin: 0;
+  overflow: hidden;
+}
+.search_bar input[type=text]:focus {
+  outline: none;
+}
+.search_bar button[type=submit] {
+  background: #FFB717;
+  color: rgba(255, 255, 255, 0);
+  border: 1px solid #393733;
+  width: 10%;
+  min-width: 56px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 0 3px 3px 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.search_bar button[type=submit]:after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  right: 0;
+  bottom: 22%;
+  left: 4%;
+  background: url("http://media.lib.byu.edu/assets/images/searchbar/1.0/search-icon.svg") no-repeat center center;
+  background-size: contain;
+}
+.search_bar button[type=submit]:hover, .search_bar button[type=submit]:focus {
+  cursor: pointer;
+}
+.search_bar .search_dropdown {
+  font-weight: 600;
+  min-width: 17px;
+  background: #f4f4f4;
+  width: 146px;
+  border-right: 1px solid #ddd;
+  color: #555;
+  padding: 0 28px 0 13px;
+  border-radius: 2px 0 0 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  box-sizing: content-box;
+}
+.search_bar .search_dropdown:after {
+  content: "\2193";
+  color: rgba(85, 85, 85, 0);
+  background: url("http://media.lib.byu.edu/assets/images/searchbar/1.0/down-arrow.svg") no-repeat top left;
+  height: 8px;
+  width: 10px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -6px;
+}
+.search_bar .search_dropdown:hover, .search_bar .search_dropdown.active {
+  background: #e7e7e7;
+  cursor: pointer;
+}
+.search_bar .search_dropdown > span {
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  white-space: nowrap;
+  font-size: 15px;
+}
+.search_bar .search_dropdown ul {
+  display: none;
+  position: absolute;
+  top: 105%;
+  left: -1px;
+  font-size: 14px;
+  width: 225px;
+  background: #fff;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px 0;
+}
+.search_bar .search_dropdown li {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 18px;
+  color: #393733;
+  line-height: 1.2em;
+  position: relative;
+}
+.search_bar .search_dropdown li:hover {
+  background: #e7e7e7;
+}
+.search_bar .search_dropdown li.selected {
+  background: #393733;
+  color: #fff;
+}
+.search_bar ::-webkit-input-placeholder {
+  font-weight: 400;
+}
+.search_bar ::-moz-placeholder {
+  font-weight: 400;
+}
+.search_bar :-ms-input-placeholder {
+  font-weight: 400;
+}
+.search_bar ::placeholder {
+  font-weight: 400;
+}
+
+select{
+	width: 250px;
+}
+
+#sign_up_done_btn{
+	border: 1px solid #FFB717;
 }

@@ -3,7 +3,7 @@
     <pelicula>
         <id>paris_opera</id>
         <titulo>The Paris Opera</titulo>
-        <poster>imgs/posters/the_paris_opera_poster.jpg</poster>
+        <poster>imgs/posters/paris_opera.jpg</poster>
         <sinopsis>
             Una temporada en la Ópera de París bajo la dirección de Stephane Lissner. Pasando de la danza a la música, a veces ligera, irónica y cruel; la ópera pone en escena las pasiones humanas, y cuenta retazos de la vida, en el corazón de uno de los teatros de ópera más prestigiosos del mundo.
         </sinopsis>
@@ -32,7 +32,7 @@
     <pelicula>
         <id>foreigner</id>
         <titulo>The Foreigner</titulo>
-        <poster>imgs/posters/the_foreigner_poster.jpg</poster>
+        <poster>imgs/posters/foreigner.jpg</poster>
         <sinopsis>
             La historia del humilde hombre de negocios Quan (Jackie Chan), cuyo pasado erupciona en una venganza desenfrenada después de que su hija muera en un atentado terrorista motivado por aspectos políticos. En su búsqueda de los terroristas, Quan se ve atrapado en un juego del gato y el ratón con un oficial del gobierno británico (Pierce Brosnan), cuyo pasado podría tener algo que ver con los asesinos.
         </sinopsis>
@@ -61,7 +61,7 @@
     <pelicula>
         <id>marshall</id>
         <titulo>Marshall</titulo>
-        <poster>imgs/posters/marshall_poster.jpg</poster>
+        <poster>imgs/posters/marshall.jpg</poster>
         <sinopsis>
             Este drama histórico presenta los inicios de la carrera del abogado de la NAACP Thurgood Marshall (Chadwick Boseman), que se convertirá en el primer juez afroamericano de la Corte Suprema de Estados Unidos. En el Connecticut de 1940, Marshall defiende a un chófer negro (Sterling K. Brown) que es acusado de violar e intentar asesinar a su jefa blanca (Kate Hudson).
         </sinopsis>
@@ -93,9 +93,9 @@
     </pelicula>
     
     <pelicula>
-        <id>professor_marton</id>
-        <titulo>Professor Marton</titulo>
-        <poster>imgs/posters/professor_marton_poster.jpg</poster>
+        <id>professor_marston</id>
+        <titulo>Professor Marston</titulo>
+        <poster>imgs/posters/professor_marston.jpg</poster>
         <sinopsis>
             Biopic sobre el Dr. William Marston, psicólogo de Harvard e inventor a quien se le atribuye también la creación del personaje de Wonder Woman en 1941.
         </sinopsis>
@@ -119,7 +119,7 @@
     <pelicula>
         <id>breathe</id>
         <titulo>Breathe</titulo>
-        <poster>imgs/posters/breathe_poster.jpg</poster>
+        <poster>imgs/posters/breathe.jpg</poster>
         <sinopsis>
             Cuenta la historia real de Robin (Andrew Garfield), un joven atractivo, brillante y aventurero cuya vida da un giro drástico cuando la polio le deja paralizado.         </sinopsis>
         <director>Andy Serkis</director>
@@ -142,7 +142,7 @@
     <pelicula>
         <id>tom_finland</id>
         <titulo>Tom of Finland</titulo>
-        <poster>imgs/posters/tom_of_finland_poster.jpg</poster>
+        <poster>imgs/posters/tom_finland.jpg</poster>
         <sinopsis>
             La película sigue los pasos de Touko Laaksonen, figura pionera de la cultura gay, que sufrió la opresión y homofobia durante su juventud. Volvió como héroe de la Segunda Guerra Mundial, pero la vida en Finlandia en tiempos de paz no fue como esperaba. Perseguido por su homosexualidad, se encontró sumergido en relaciones secretas y presionado para casarse con una mujer. Encontró una válvula de escape a través de su arte, especialmente por sus dibujos homoeróticos con un estilo marcado por musculados cuerpos masculinos vestidos de cuero. Su fama llegó a ser importante en Estados Unidos bajo su nombre artístico, "Tom of Finland".
         </sinopsis>
@@ -156,6 +156,228 @@
                 <nombre>Pekka Strang</nombre> 
                 <personaje>Touko Laaksonen</personaje>
                 <foto>img/actors/pekka_strang.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>geostorm</id>
+        <titulo>Geostorm</titulo>
+        <poster>imgs/posters/geostorm.jpg</poster>
+        <sinopsis>
+            Un ingeniero diseñador de satélites, tras un fallo en cadena de la mayor parte de los satélites meteorológicos de la Tierra, deberá formar equipo con su hermano, con quien hace años que no se habla, para viajar al espacio y salvar al planeta de una tormenta artificial de proporciones épicas... todo ello mientras en la superficie del planeta se está gestando un complot para asesinar al presidente de Estados Unidos.
+        </sinopsis>
+        <director>Dean Devlin</director>
+        <precio>15.99</precio>
+        <categoria>Acción</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Gerard Butler</nombre> 
+                <personaje>Ingeniero</personaje>
+                <foto>img/actors/gerard_butler.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>gru_3</id>
+        <titulo>Gru 3. Mi villano favorito</titulo>
+        <poster>imgs/posters/gru_3.jpg</poster>
+        <sinopsis>
+            Balthazar Pratt, un antiguo niño estrella obsesionado con el personaje que encarnó en los años ochenta, demuestra ser el peor enemigo al que Gru ha debido enfrentarse hasta la fecha.
+        </sinopsis>
+        <director>Kyle Balda</director>
+        <precio>16.99</precio>
+        <categoria>Infantil</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Florentino Fernández</nombre> 
+                <personaje>Gru</personaje>
+                <foto>img/actors/florentino_fernandez.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>montaña_entre_nosotros</id>
+        <titulo>La montaña entre nosotros</titulo>
+        <poster>imgs/posters/montana_entre_nosotros.jpg</poster>
+        <sinopsis>
+            El doctor Ben Bass y la reportera gráfica Alex Martin (Kate Winslet) son dos extraños que han decidido compartir un viaje privado, y que se verán obligados a confiar el uno en el otro para sobrevivir tras sufrir un accidente de avioneta en plenas montañas de Colorado.
+        </sinopsis>
+        <director>Hany Abu-Assad</director>
+        <precio>16.99</precio>
+        <categoria>Aventura</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Ben Bass</nombre> 
+                <personaje>Idris Elba</personaje>
+                <foto>img/actors/ben_bass.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>dunkerque</id>
+        <titulo>Dunkerque</titulo>
+        <poster>imgs/posters/dunkerque.jpg</poster>
+        <sinopsis>
+            Año 1940, en plena II Guerra Mundial. En las playas de Dunkerque, cientos de miles de soldados de las tropas británicas y francesas se encuentran rodeados por el avance del ejército alemán, que ha invadido Francia. Atrapados en la playa, con el mar cortándoles el paso, las tropas se enfrentan a una situación angustiosa que empeora a medida que el enemigo se acerca.
+        </sinopsis>
+        <director>Christopher Nolan</director>
+        <precio>19.99</precio>
+        <categoria>Bélico</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Fionn Whitehead</nombre> 
+                <personaje>Tommy</personaje>
+                <foto>img/actors/fion_whitehead.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>blade_runner</id>
+        <titulo>Blade Runner 2049</titulo>
+        <poster>imgs/posters/blade_runner.jpg</poster>
+        <sinopsis>
+            Treinta años después de los eventos del primer film, un nuevo blade runner, K (Ryan Gosling) descubre un secreto largamente oculto que podría acabar con el caos que impera en la sociedad. El descubrimiento de K le lleva a iniciar la búsqueda de Rick Deckard (Harrison Ford), un blade runner al que se le perdió la pista hace 30 años.
+        </sinopsis>
+        <director>Denis Villeneuve</director>
+        <precio>18.99</precio>
+        <categoria>Ciencia ficción</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Ryan Gosling</nombre> 
+                <personaje>K</personaje>
+                <foto>img/actors/ryan_gosling.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Harrison Ford</nombre> 
+                <personaje>Rick Deckard</personaje>
+                <foto>img/actors/harrison_ford.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>cordillera</id>
+        <titulo>La cordillera</titulo>
+        <poster>imgs/posters/cordillera.jpg</poster>
+        <sinopsis>
+            En una Cumbre de presidentes latinoamericanos en Chile, en donde se definen las estrategias y alianzas geopolíticas de la región, Hernán Blanco (Ricardo Darín), el presidente argentino, vive un drama político y familiar que le hará enfrentarse a sus propios demonios. Deberá tomar dos decisiones que podrían cambiar el curso de su vida en el orden público y privado: por un lado, una complicada situación emocional con su hija, y por otro, la decisión política más importante de su carrera. 
+        </sinopsis>
+        <director>Santiago Mitre</director>
+        <precio>15.99</precio>
+        <categoria>Misterio</categoria>
+        <anno>2017</anno>
+        <pais>Argentina</pais>
+        <actores>
+            <actor>
+                <nombre>Ricardo Darín</nombre> 
+                <personaje>Hernán Blanco</personaje>
+                <foto>img/actors/ryan_gosling.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>cancion_de_ny</id>
+        <titulo>Canción de Nueva York</titulo>
+        <poster>imgs/posters/cancion_ny.jpg</poster>
+        <sinopsis>
+            Un joven (Callum Turner) recién licenciado de Nueva York descubre que su despótico padre (Pierce Brosnan) está teniendo una aventura con una atractiva joven (Kate Beckinsale). Tratando de detenerlo, acabará involucrado sentimentalmente con ella.
+        </sinopsis>
+        <director>Marc Webb</director>
+        <precio>15.99</precio>
+        <categoria>Romántico</categoria>
+        <anno>2017</anno>
+        <pais>Estados Unidos</pais>
+        <actores>
+            <actor>
+                <nombre>Callum Turner</nombre> 
+                <personaje>Joven</personaje>
+                <foto>img/actors/callum_turner.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Pierce Brosnan</nombre> 
+                <personaje>Padre</personaje>
+                <foto>img/actors/pierce_brosnan.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Kate Beckinsale</nombre> 
+                <personaje>Joven</personaje>
+                <foto>img/actors/kate_beckinsale.jpg</foto>
+            </actor>
+        </actores>
+        <fotosYvideos>
+            <fotoOvideo></fotoOvideo>
+        </fotosYvideos>
+    </pelicula>
+    
+    <pelicula>
+        <id>secreto_marrowbone</id>
+        <titulo>El secreto de Marrowbone</titulo>
+        <poster>imgs/posters/secreto_marrowbone.jpg</poster>
+        <sinopsis>
+            Cuatro hermanos, temiendo que les separen tras la muerte de su madre, se esconden del mundo en su abandonada granja, un lugar cuyas viejas paredes esconden un terrible secreto...
+        </sinopsis>
+        <director>Sergio G. Sánchez</director>
+        <precio>14.99</precio>
+        <categoria>Terror</categoria>
+        <anno>2017</anno>
+        <pais>España</pais>
+        <actores>
+            <actor>
+                <nombre>George MacKay</nombre> 
+                <personaje>Hermano</personaje>
+                <foto>img/actors/george_mackay.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Mia Goth</nombre> 
+                <personaje>Hermana</personaje>
+                <foto>img/actors/mia_goth.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Charlie Heaton</nombre> 
+                <personaje>Hermano</personaje>
+                <foto>img/actors/charlie_heaton.jpg</foto>
+            </actor>
+            <actor>
+                <nombre>Anya Taylor-Joy</nombre> 
+                <personaje>Hermana</personaje>
+                <foto>img/actors/anya_taylor-joy.jpg</foto>
             </actor>
         </actores>
         <fotosYvideos>

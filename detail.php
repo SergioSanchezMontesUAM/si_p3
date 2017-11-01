@@ -19,6 +19,7 @@
 	    
 	foreach($peliculas as $pelicula){
 		$title = $pelicula->titulo;
+		$poster = $pelicula->poster;
 		$genre = $pelicula->categoria;
 		$year = $pelicula->anno;
 		$country = $pelicula->pais;
@@ -49,26 +50,24 @@
 	<div class="header">
 
 		<div class="header_column">
-			<div class="display_flex">
-				<form metod="get" action="search.php" id="form_search">
-					<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
-					<select name="genre" form="form_search">
-						<option value="ninguno" selected>Todas las categorías</option>
-						<option value="acction">Acción</option>
-						<option value="aventura">Aventura</option>
-						<option value="belico">Bélico</option>
-						<option value="ciencia_ficcion">Ciencia ficción</option>
-						<option value="dramatico">Dramático</option>
-						<option value="infantil">Infantil</option>
-						<option value="misterio">Mistery</option>
-						<option value="romantico">Romance</option>
-						<option value="terror">Terror</option>
-					</select>
-					<button type="submit" value="submit_search">
-						<i class="material-icons">search</i>
-					</button>
-				</form>
-			</div>
+			<form class="search_bar" method="get" action="search.php" id="form_search">
+				<select name="genre" form="form_search">
+					<option value="ninguno" selected>Todas las categorías</option>
+					<option value="acction">Acción</option>
+					<option value="aventura">Aventura</option>
+					<option value="belico">Bélico</option>
+					<option value="ciencia_ficcion">Ciencia ficción</option>
+					<option value="dramatico">Dramático</option>
+					<option value="infantil">Infantil</option>
+					<option value="misterio">Misterio</option>
+					<option value="romantico">Romance</option>
+					<option value="terror">Terror</option>
+				</select>
+		
+			  <input type="text" placeholder="Buscar por título" name="movie"/>
+		
+			  <button type="submit" value="submit_search"></button>
+			</form>
 		</div>
 		<div class="header_column">
 			<a href="index.php" id="header_second_column">
@@ -183,7 +182,7 @@
 
 		<div class="detail_movie_info">
 
-			<div class="detail_movie_picture"></div>
+			<img class="detail_movie_picture" src="<?php echo $poster ?>"></img>
 
 			<div class="detail_movie_info_2">
 
@@ -312,6 +311,8 @@
 				
 				cartItems.push("<?php echo $id; ?>");
 				$.cookie('cart_items_cookie', JSON.stringify(cartItems));
+				
+				alert("Artículo añadido al carrito")
 			}
 			
 			function buyScript(){

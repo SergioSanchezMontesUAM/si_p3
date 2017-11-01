@@ -41,26 +41,24 @@
 		<div class="header">
 	
 			<div class="header_column">
-				<div class="display_flex">
-					<form metod="get" action="search.php" id="form_search">
-						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
-						<select name="genre" form="form_search">
-							<option value="ninguno" selected>Todas las categorías</option>
-							<option value="acction">Acción</option>
-							<option value="aventura">Aventura</option>
-							<option value="belico">Bélico</option>
-							<option value="ciencia_ficcion">Ciencia ficción</option>
-							<option value="dramatico">Dramático</option>
-							<option value="infantil">Infantil</option>
-							<option value="misterio">Mistery</option>
-							<option value="romantico">Romance</option>
-							<option value="terror">Terror</option>
-						</select>
-						<button type="submit" value="submit_search">
-							<i class="material-icons">search</i>
-						</button>
-					</form>
-				</div>
+				<form class="search_bar" method="get" action="search.php" id="form_search">
+					<select name="genre" form="form_search">
+						<option value="ninguno" selected>Todas las categorías</option>
+						<option value="acction">Acción</option>
+						<option value="aventura">Aventura</option>
+						<option value="belico">Bélico</option>
+						<option value="ciencia_ficcion">Ciencia ficción</option>
+						<option value="dramatico">Dramático</option>
+						<option value="infantil">Infantil</option>
+						<option value="misterio">Misterio</option>
+						<option value="romantico">Romance</option>
+						<option value="terror">Terror</option>
+					</select>
+			
+				  <input type="text" placeholder="Buscar por título" name="movie"/>
+			
+				  <button type="submit" value="submit_search"></button>
+				</form>
 			</div>
 			<div class="header_column">
 				<a href="index.php"  id="header_second_column">
@@ -129,7 +127,7 @@
     				</td>
     				<td>Ciencia ficción</td>
     			</tr>
-    			<tr class="clickable-row" data-href="search.php?genre=dramatico">
+    			<tr class="clickable-row" data-href="search.php?genre=drama">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
@@ -211,7 +209,7 @@
 								$total_price += floatval($price);
 							}
 							
-							echo "<tr class=\"history_table_row\"><td id=\"cart_movie\"><div class=\"cart_movie_picture\"></div><p class=\"cart_movie_title\">" . $title . "</p></td><td>" . $price . "</td><td><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>+10</option></select></td><td><button>x</button></td></tr>";
+							echo "<tr class=\"history_table_row\"><td class='display_flex'><img class='cart_movie_picture' src='" . $poster . "'></img><p class=\"cart_movie_title\">" . $title . "</p></td><td>" . $price . "</td><td><select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>+10</option></select></td><td><button>x</button></td></tr>";
 						}
 					}
 					

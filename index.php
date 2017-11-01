@@ -20,39 +20,42 @@
 	    <script src="js/main.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   	    <script src="js/users_online.js"></script>
+  	    <script src="js/search_box.js"></script>
 	</head>
 	<body>
 	
 		<div class="header">
 	
 			<div class="header_column">
-				<div class="display_flex">
-					<form metod="get" action="search.php" id="form_search">
-						<input type="text" class="header_search_input" name="movie" placeholder="buscar"/>
-						<select name="genre" form="form_search">
-							<option value="ninguno" selected>Todas las categorías</option>
-							<option value="acction">Acción</option>
-							<option value="aventura">Aventura</option>
-							<option value="belico">Bélico</option>
-							<option value="ciencia_ficcion">Ciencia ficción</option>
-							<option value="dramatico">Dramático</option>
-							<option value="infantil">Infantil</option>
-							<option value="misterio">Mistery</option>
-							<option value="romantico">Romance</option>
-							<option value="terror">Terror</option>
-						</select>
-						<button type="submit" value="submit_search">
-							<i class="material-icons">search</i>
-						</button>
-					</form>
-				</div>
+				
+				<form class="search_bar" method="get" action="search.php" id="form_search">
+					<select name="genre" form="form_search">
+						<option value="ninguno" selected>Todas las categorías</option>
+						<option value="accion">Acción</option>
+						<option value="aventura">Aventura</option>
+						<option value="belico">Bélico</option>
+						<option value="ciencia_ficcion">Ciencia ficción</option>
+						<option value="dramatico">Dramático</option>
+						<option value="infantil">Infantil</option>
+						<option value="misterio">Misterio</option>
+						<option value="romantico">Romance</option>
+						<option value="terror">Terror</option>
+					</select>
+			
+				  <input type="text" placeholder="Buscar por título" name="movie"/>
+			
+				  <button type="submit" value="submit_search"></button>
+				</form>
+				
 			</div>
+			
 			<div class="header_column">
 				<a href="#"  id="header_second_column">
 					<div id="header_second_column_logo"></div>
 					<div id="header_second_column_name">MOVIE ARCHIVE</div>
 				</a>
 			</div>
+			
 			<div class="header_column">
 				<div class="display_flex">
 					<a href="login_or_profile.php" id="header_login">
@@ -114,7 +117,7 @@
     				</td>
     				<td>Ciencia ficción</td>
     			</tr>
-    			<tr class="clickable-row" data-href="search.php?genre=dramatico">
+    			<tr class="clickable-row" data-href="search.php?genre=drama">
     				<td>
     					<svg style="width:24px;height:24px" viewBox="0 0 24 24">
     					    <path fill="#ffffff" d="M11.5,1L2,6V8H21V6M16,10V17H19V10M2,22H21V19H2M10,10V17H13V10M4,10V17H7V10H4Z" />
@@ -168,12 +171,15 @@
 					$catalogo = simplexml_load_file('catalogo.xml');
 					$i = 0;
 					foreach ($catalogo->pelicula as $pelicula) {
-						$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><div class=\"movie\"></div></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
+						$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><img class=\"movie\" src='" . $pelicula->poster . "'></img></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
 						$i++;
 						if($i%3 === 0) {
 							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
 							$movie_html = "";
 						}
+					}
+					if($i%3 !== 0){
+						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
 					}
 				}
 			?>
