@@ -1,31 +1,25 @@
 <?php
 
 	if(isset($_POST['submit_log_in'])){
-
 		$username = $_REQUEST['username'];
 		$password = $_REQUEST['password'];
 
-    try{
-      $database = new PDO("pgsql:dbname=si1; host=localhost", "alumnodb", "alumnodb");
-      $q_username = $database->query("select username from customers");
-      while($row = $q_username->fetch(PDO::FETCH_OBJ)){
-  			if(strtolower($row->username) === $username){
-          echo $row->username;
-          $q_password = $database->query("select passwd from customers where username=" . $username);
-          $row = $q_password->fetch(PDO::FETCH_OBJ));
-          if($row->passwd === $password){
-            echo $row->passwd;
-            session_start();
-            $_SESSION['username'] = $username;
-            header('Location: index.php');
-          }
-        }
-      }
-    }
-    catch(PDOException $e){
-      echo $e->getMessage();
-    }
+		try{
+			$database = new PDO("pgsql:dbname=si1; host=localhost", "alumnodb", "alumnodb");
+			$q_password = $database->query("select passwd from customers where username='" . $username . "'");
+			if($q_password){
+				$returned_password = $q_password->fetch(PDO::FETCH_OBJ);
+				if($returned_password->passwd === $password){
+					session_start();
+					$_SESSION['username'] = $username;
+					header('Location: index.php');
+				}
+			}
 
+		}
+		catch(PDOException $e){
+			echo $e->getMessage();
+		}
 	}
 
 ?>
