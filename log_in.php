@@ -1,52 +1,33 @@
 <?php
-	
+
 	if(isset($_POST['submit_log_in'])){
-		
+
 		$username = $_REQUEST['username'];
 		$password = $_REQUEST['password'];
-		
-		//Construimos la ruta de la carpeta correspondiente al usuario
-	    $path = getcwd() . "/usuarios/" . $username;
-	    
-	    //Comprobamos si está registrado
-	    if(!file_exists($path)){
-	        echo "Usuario no registrado";
-	    }
-	    else{
-	        $dat_file = fopen($path . "/datos.dat", "r");
-	        $i = 0;
-	        while(($line = fgets($dat_file)) !== false){
 
-	        	//Línea de datos.dat correspondiente a la contraseña
-	        	if($i == 1){
-	        		
-	        		if(strncmp($line, $password, strlen($password)-1) == 0){
-			        			
-		    			session_start();
-		    			$_SESSION['username'] = $username; 
-		    			
-		    			//Si viene del carrito porque queria pagar sin estar logeado, le mandamos al carrito de nuevo
-		    			if(isset($_COOKIE['from_cart'])){
-		    				//Eliminamos la cookie
-		    				setcookie('from_cart', "", time()-3600);
-		    				unset($_COOKIE['from_cart']);
-		    				
-							header('Location: cart.php');
-		    			}
-						else header('Location: index.php');
+    try{
+      $database = new PDO("pgsql:dbname=si1; host=localhost", "alumnodb", "alumnodb");
+      $q_username = $database->query("select username from customers");
+      while($row = $q_username->fetch(PDO::FETCH_OBJ)){
+  			if(strtolower($row->username) === $username){
+          echo $row->username;
+          $q_password = $database->query("select passwd from customers where username=" . $username);
+          $row = $q_password->fetch(PDO::FETCH_OBJ));
+          if($row->passwd === $password){
+            echo $row->passwd;
+            session_start();
+            $_SESSION['username'] = $username;
+            header('Location: index.php');
+          }
+        }
+      }
+    }
+    catch(PDOException $e){
+      echo $e->getMessage();
+    }
 
-	        		}
-	        		else{
-	        			//contraseña inconrrecta
-	        		}
-	        		
-	        	}
-	        	
-	        	$i++;
-	        }
-	    }
 	}
-	
+
 ?>
 
 
@@ -67,7 +48,7 @@
 	<div class="log_in_card_div">
 
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-				
+
 			<table id="sign_up_table">
 				<tr>
 					<td id="sign_up_table_th">Iniciar sesión</td>
