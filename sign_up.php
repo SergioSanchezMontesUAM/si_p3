@@ -1,41 +1,30 @@
 <?php
 
 	if(isset($_POST['submit_sign_up'])){
-		
-		$public_html_path = getcwd();
-    	    $usuarios_path = $public_html_path . "/usuarios/";
 
-    	    //Comprobamos si existe la carpeta usuarios. Si no existe, la creamos
-    	    if (!file_exists($usuarios_path)) {
-		        mkdir($usuarios_path, 0777, true);
-	        }
+    $username = $_REQUEST['username'];
+		$password = $_REQUEST['password'];
 
-	        $nuevo_usuario_path = $usuarios_path . $_REQUEST['username'];
+		try{
+			$database = new PDO("pgsql:dbname=si1; host=localhost", "alumnodb", "alumnodb");
+			$q_isregistered = $database->query("select * from customers where username='" . $username . "'");
+			if(!$q_isregistered){
+				//Nombre de usuario en uso
+			}
+      else{
+        $database->exec("insert into customers (username, passwd) values ('" . $username . "', '" . $password . "')");
 
-	        //Si ya existe un directorio con ese nombre, el nombre de usuario ya esta en uso
-	        if(file_exists($nuevo_usuario_path)){
-	            echo "El nombre de usuario ya está en uso";
-	        }
-	        else{
+  			session_start();
+  			$_SESSION['username'] = $_REQUEST['username'];
+  			
+  			header('Location: index.php');
+      }
 
-    			mkdir($nuevo_usuario_path, 0777, true);
+		}
+		catch(PDOException $e){
+			echo $e->getMessage();
+		}
 
-    			//Creamos el archivo .dat y guardamos la información del usuario
-    			$dat_file = fopen($nuevo_usuario_path . "/datos.dat", "w");
-    			fwrite($dat_file, $_REQUEST['username']."\n".$_REQUEST['password']."\n".$_REQUEST['email']."\n".$_REQUEST['credit_card_1'].$_REQUEST['credit_card_2'].$_REQUEST['credit_card_3'].$_REQUEST['credit_card_4']."\n".rand(0,100));
-
-				$history_file = new DOMDocument( );
-			    $root = $history_file->createElement('historial');
-			    $root->nodeValue = '';
-			    $history_file->appendChild($root);
-			    $history_file->save($nuevo_usuario_path . "/historial.xml");
-
-    			session_start();
-    			$_SESSION['username'] = $_REQUEST['username']; 
-    			
-    			header('Location: index.php');
-	        }
-		
 	}
 
 ?>
@@ -50,16 +39,16 @@
 		<script src="js/validate_password.js"></script>
 	</head>
 	<body class="sign_up_container">
-	
+
 		<a href="index.php" class="header_only_title">
 			<div id="header_second_column_logo"></div>
 			<div id="header_second_column_name">MOVIE ARCHIVE</div>
 		</a>
-	
+
 		<div class="sign_up_card_div">
-	
+
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="signup_form">
-					
+
 				<table id="sign_up_table">
 					<tr>
 						<td id="sign_up_table_th">Registrarse</td>
@@ -88,15 +77,15 @@
 							<input class="sign_up_input" type="password" name="password" id="password_input">
 						</td>
 					</tr>
-	
+
 					<tr>
 						<td id="sign_up_table_divider"></td>
 					</tr>
-	
+
 					<tr>
 						<td class="sign_up_table_td">Sexo</td>
 					</tr>
-	
+
 					<tr>
 						<td class="sign_up_table_td">
 							<input type="radio" name="gender" value="male" checked> Masculino<br>
@@ -122,16 +111,16 @@
 							<textarea id="sign_up_about_me" name="about_me"></textarea>
 						</td>
 					</tr>
-	
+
 					<tr>
 						<td id="sign_up_table_forgot_done">
 							<input type="submit" name="submit_sign_up" id="sign_up_done_btn" value="Hecho">
 						</td>
 					</tr>
 				</table>
-	
+
 			</form>
-			
+
 			<div id="pswd_info">
 			    <h4>Password must meet the following requirements:</h4>
 			    <ul>
@@ -141,9 +130,9 @@
 			        <li id="length" class="invalid">Al menos <strong>8 caracteres</strong></li>
 			    </ul>
 			</div>
-	
+
 		</div>
-	
+
 		<div class="sign_up_footer">
 			<div class="sentence">
 				<p>Ya tienes una cuenta? &nbsp;</p>
