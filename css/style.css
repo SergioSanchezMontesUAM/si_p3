@@ -128,14 +128,16 @@
 .movie{
 	width: 175px;
 	height: 250px;
-	margin-left: 50px;
-	margin-right: 50px;
 	border-radius: 5px;
 	background-color: #393733;
+	display: inline-block;
 }
 
 .item_movie{
 	margin-bottom: 25px;
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
 }
 
 .movie_title{
@@ -616,13 +618,14 @@ h2{
 }
 
 .menu{
-	width: 13%;
+	width: 14%;
 	height: 70%;
 	top: 15%;
 	left: 0;
 	position: fixed;
 	background-color: #212121;
-	Z-index: -999
+	Z-index: -999;
+	overflow-y:scroll;
 }
 
 .menu_table{
