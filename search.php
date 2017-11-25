@@ -174,13 +174,13 @@
 
 			 	//Buscando solo por categoria (viene del menu lateral)
    			if(is_null($movie)){
-					$q_movies = $database->query("select movietitle, price, description from imdb_movies natural join imdb_moviegenres natural join products where genreid=" . $genreid);
+					$q_movies = $database->query("select prodid, movietitle, price, description from imdb_movies natural join imdb_moviegenres natural join products where genreid=" . $genreid);
 
 					$i = 0;
 					while($row = $q_movies->fetch(PDO::FETCH_OBJ)){
 						$movie_html .= "<div class='item_movie'>
 										<h2>" . $row->description . "</h2>
-										<a href=#>
+										<a href=detail.php?id=" . $row->prodid . ">
 											<div class='movie'></div>
 										</a>
 										<div class='movie_title'>"
