@@ -1,11 +1,11 @@
 <?php
 
 	session_start();
-	
+
 	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
 	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
-	
-	
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +23,11 @@
   	    <script src="js/search_box.js"></script>
 	</head>
 	<body>
-	
+
 		<div class="header">
-	
+
 			<div class="header_column">
-				
+
 				<form class="search_bar" method="get" action="search.php" id="form_search">
 					<select name="genre" form="form_search">
 						<option value="ninguno" selected>Todas las categorías</option>
@@ -41,21 +41,21 @@
 						<option value="romantico">Romance</option>
 						<option value="terror">Terror</option>
 					</select>
-			
+
 				  <input type="text" placeholder="Buscar por título" name="movie"/>
-			
+
 				  <button type="submit" value="submit_search"></button>
 				</form>
-				
+
 			</div>
-			
+
 			<div class="header_column">
 				<a href="#"  id="header_second_column">
 					<div id="header_second_column_logo"></div>
 					<div id="header_second_column_name">MOVIE ARCHIVE</div>
 				</a>
 			</div>
-			
+
 			<div class="header_column">
 				<div class="display_flex">
 					<a href="login_or_profile.php" id="header_login">
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-    	
+
     	<div class="menu">
     		<table class="menu_table">
     			<tr class="clickable-row" data-href="search.php?genre=accion">
@@ -158,33 +158,45 @@
     			</tr>
     		</table>
     	</div>
-    	
+
 		<div class="content">
-	
+
 			<div id="last_movies_title">
-				<h1>ÚLTIMAS PELÍCULAS</h1>
+				<h1>TOP VENTAS</h1>
 			</div>
-	
-			<?php
-				
-				if(file_exists('catalogo.xml')){
-					$catalogo = simplexml_load_file('catalogo.xml');
-					$i = 0;
-					foreach ($catalogo->pelicula as $pelicula) {
-						$movie_html .=  "<div class=\"item_movie\"><a href=\"detail.php?id=" . $pelicula->id . "\"><img class=\"movie\" src='" . $pelicula->poster . "'></img></a><div class=\"movie_title\">" . $pelicula->titulo . "</div><div class=\"movie_price\">" . $pelicula->precio . "</div></div>";
-						$i++;
-						if($i%3 === 0) {
-							echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
-							$movie_html = "";
+
+			<div class="last_movies_row">
+				<?php
+					try{
+						$database = new PDO("pgsql:dbname=si1; host=localhost", "alumnodb", "alumnodb");
+						$q_max_year = $database->query("select year from imdb_movies order by year desc limit 1");
+						$max_year = $q_max_year->fetch(PDO::FETCH_OBJ);
+				    $from_year = $max_year->year - 2;
+
+						$q_top_ventas = $database->query("select * from gettopventas('" . $from_year . "')");
+
+						while($row = $q_top_ventas->fetch(PDO::FETCH_OBJ)){
+							echo "<div class='item_movie'>
+											<h2>" . $row->agno . "</h2>
+											<a href=#>
+												<div class='movie'></div>
+											</a>
+											<div class='movie_title'>"
+												. $row->pelicula .
+											"</div>
+											<div class='movie_price'>"
+												. $row->ventas .
+											"</div>
+										</div>";
 						}
 					}
-					if($i%3 !== 0){
-						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+					catch(PDOException $e){
+						echo $e->getMessage();
 					}
-				}
-			?>
+				?>
+
 		</div>
-	
+
 		<div class="footer">
 			<div class="footer_left">
 				<div class="footer_left_top">
@@ -213,7 +225,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="footer_right">
 				<div class="footer_right_top">
 					<div id="moviearchive_hashtag">#moviearchive</div>
@@ -231,6 +243,6 @@
 				</div>
 			</div>
 		</div>
-	
+
 	</body>
 </html>

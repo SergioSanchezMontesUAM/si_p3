@@ -28,7 +28,7 @@
 	margin-right: 15px;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge 
+::-webkit-input-placeholder { /* WebKit, Blink, Edge
     color:    #feffff;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
@@ -131,6 +131,7 @@
 	margin-left: 50px;
 	margin-right: 50px;
 	border-radius: 5px;
+	background-color: #393733;
 }
 
 .item_movie{
@@ -181,7 +182,7 @@
 	height: 15%;
 	bottom: 0;
 	left: 0;
-	right: 0;	
+	right: 0;
 	position: fixed;
 	background-color: #eeeeee;
 	display: flex;
@@ -413,7 +414,7 @@ th, td{
 .sign_up_table_td{
 	padding:3px;
 	padding-left: 20px;
-	display: inline-flex;	
+	display: inline-flex;
 	width: 100%;
 }
 
@@ -460,7 +461,7 @@ th, td{
 
 input[type=submit]{
 	background-color: #FFB717;
-	padding: 10px;	
+	padding: 10px;
 	margin-left: 20px;
 	border-radius: 2px;
 }
@@ -625,7 +626,7 @@ h2{
 }
 
 .menu_table{
-	width: 20%;	
+	width: 20%;
 	color: #feffff;
 }
 
@@ -657,7 +658,7 @@ h2{
 	position: fixed;
 	top: 16%;
 	margin-left: 16px;
-	
+
 }
 
 .cart_movie_picture{
@@ -887,4 +888,9 @@ select{
 
 #sign_up_done_btn{
 	border: 1px solid #FFB717;
+}
+
+h2{
+	text-align: center;
+	color: #9E9E9E;
 }
