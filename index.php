@@ -37,16 +37,13 @@
 
 				<form class="search_bar" method="get" action="search.php" id="form_search">
 					<select name="genre" form="form_search">
-						<option value="ninguno" selected>Todas las categorías</option>
-						<option value="accion">Acción</option>
-						<option value="aventura">Aventura</option>
-						<option value="belico">Bélico</option>
-						<option value="ciencia_ficcion">Ciencia ficción</option>
-						<option value="dramatico">Dramático</option>
-						<option value="infantil">Infantil</option>
-						<option value="misterio">Misterio</option>
-						<option value="romantico">Romance</option>
-						<option value="terror">Terror</option>
+						<option value="0" selected>All categories</option>
+						<?php
+							$q_genres = $database->query("select * from genres order by genre asc");
+							while($row = $q_genres->fetch(PDO::FETCH_OBJ)){
+								echo "<option value=" . $row->genreid . ">" . $row->genre . "</option>";
+							}
+						?>
 					</select>
 
 				  <input type="text" placeholder="Buscar por título" name="movie"/>
@@ -95,11 +92,11 @@
 				<th>Categories</th>
 				<?php
 					$q_genres = $database->query("select * from genres order by genre asc");
-						while($row = $q_genres->fetch(PDO::FETCH_OBJ)){
-							echo "<tr class='clickable-row' data-href='search.php?genreid=". $row->genreid . "'>
-					    				<td>". $row->genre . "</td>
-					    			</tr>";
-						}
+					while($row = $q_genres->fetch(PDO::FETCH_OBJ)){
+						echo "<tr class='clickable-row' data-href='search.php?genreid=". $row->genreid . "'>
+				    				<td>". $row->genre . "</td>
+				    			</tr>";
+					}
 				?>
   		</table>
   	</div>

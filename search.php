@@ -12,11 +12,14 @@
 	$usernameORlogin = isset($_SESSION['username']) ? $_SESSION['username'] : "acceder";
 	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
 
-  $movie = $_GET["movie"];
-  $genreid = $_GET["genreid"];
+ $movie = $_GET["movie"];
+ $genreid = $_GET["genre"];
 
-	$q_genre =
-	$genre = $database->query("select genre from genres where genreid=" . $genreid)->fetch(PDO::FETCH_OBJ)->genre;
+  //$movie = $argv[2];
+ 	//$genreid = $argv[1];
+
+ if($genreid != 0) $genre = $database->query("select * from genres where genreid=". $genreid)->fetch(PDO::FETCH_OBJ)->genre;
+
 
   function normalizar($cadena){
 
@@ -67,17 +70,18 @@
       <meta charset="utf-8">
       <title>
           <?php
-              if(strcmp($genre, "none") == 0){
-                  echo($movie . " | Movie Archive");
-              }
-              else{
-              	if(is_null($movie)){
-                  	echo($genre . " | Movie Archive");
-              	}
-              	else{
-					echo($genre . ": " . $movie . " | Movie Archive");
-              	}
-              }
+
+            if($genreid == 0){
+                echo($movie . " | Movie Archive");
+            }
+            else{
+            	if(is_null($movie)){
+                	echo($genre . " | Movie Archive");
+            	}
+            	else{
+								echo($genre . ": " . $movie . " | Movie Archive");
+            	}
+            }
 
           ?>
       </title>
@@ -97,16 +101,13 @@
 			<div class="header_column">
 				<form class="search_bar" method="get" action="search.php" id="form_search">
 					<select name="genre" form="form_search">
-						<option value="ninguno" selected>Todas las categorías</option>
-						<option value="acction">Acción</option>
-						<option value="aventura">Aventura</option>
-						<option value="belico">Bélico</option>
-						<option value="ciencia_ficcion">Ciencia ficción</option>
-						<option value="dramatico">Dramático</option>
-						<option value="infantil">Infantil</option>
-						<option value="misterio">Misterio</option>
-						<option value="romantico">Romance</option>
-						<option value="terror">Terror</option>
+						<option value="0" selected>All categories</option>
+						<?php
+							$q_genres = $database->query("select * from genres order by genre asc");
+							while($row = $q_genres->fetch(PDO::FETCH_OBJ)){
+								echo "<option value=" . $row->genreid . ">" . $row->genre . "</option>";
+							}
+						?>
 					</select>
 
 				  <input type="text" placeholder="Buscar por título" name="movie"/>
@@ -165,12 +166,13 @@
 		<div class="content">
 
 	  	<?php
+				if($genreid != 0) $genre = $database->query("select * from genres where genreid=". $genreid)->fetch(PDO::FETCH_OBJ)->genre;
 
 				echo " <div id='last_movies_title'>
 							 	<h1>" . strtoupper($genre) . "</h1>
 							 </div>";
 
-			 //Buscando solo por categoria (viene del menu lateral)
+			 	//Buscando solo por categoria (viene del menu lateral)
    			if(is_null($movie)){
 					$q_movies = $database->query("select movietitle, price, description from imdb_movies natural join imdb_moviegenres natural join products where genreid=" . $genreid);
 
@@ -199,9 +201,35 @@
 						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
 					}
 				}
+
 				else{
 
-				}
+
+					if($genreid == 0){
+						$q_movies = $database->query("select prodid, movietitle, price, description from imdb_movies natural join products natural join imdb_moviegenres where movietitle like '%" . strtolower($movie) . "%' or movietitle like '%" . strtoupper($movie) . "%' or movietitle like '%" . ucfirst($movie) . "%'");
+						echo "<div class='results_text'><p>Resultados para &nbsp;</p><p id='movie_result'>" . $movie . "</p><p>&nbsp;:</p></div>";
+					}
+					else{
+
+						$q_movies = $database->query("select prodid, movietitle, price, description, genreid from imdb_movies natural join products natural join imdb_moviegenres where genreid=" . $genreid . " and (movietitle like '%" . strtolower($movie) . "%' or movietitle like '%" . strtoupper($movie) .  "%' or movietitle like '%" . ucfirst($movie) . "%')");
+						echo "<div class='results_text'><p>Resultados para &nbsp;</p><p id='movie_result'>" . $movie . "</p><p>&nbsp;en&nbsp;</p><p class=\'bold'>" . $genre . "</p><p>: </p></div>";
+					}
+
+					$i = 0;
+					while($row = $q_movies->fetch(PDO::FETCH_OBJ)){
+						$movie_html .=  "<div class=\"item_movie\"><a href=detail.php?id=" . $row->prodid . "><img class='movie'></a><div class='movie_title'>" . $row->movietitle . "</div><div class='movie_price'>" . $row->price . "</div></div>";
+						$i++;
+						if($i%3 === 0) {
+							echo "<div class='last_movies_row'>" . $movie_html . "</div>";
+							$movie_html = "";
+						}
+					}
+
+					if($i%3 !== 0){
+						echo "<div class=\"last_movies_row\">" . $movie_html . "</div>";
+					}
+
+					}
 			?>
 		</div>
 
