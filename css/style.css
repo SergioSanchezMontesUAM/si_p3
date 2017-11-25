@@ -275,6 +275,7 @@ body{
 	height: 250px;
 	margin: 30px;
 	border-radius: 5px;
+	background: #393733;
 }
 
 .detail_movie_info_2{
@@ -290,7 +291,7 @@ body{
 	padding-top: 5px;
 }
 
-#detail_movie_stars{
+#detail_movie_director{
 	padding-top: 15px;
 	padding-bottom: 20px;
 }
@@ -326,6 +327,7 @@ body{
 .movie_info_cast_item{
 	margin-right: 30px;
 	margin-top: 10px;
+	text-align: center;
 }
 
 .circle{
@@ -333,6 +335,7 @@ body{
 	width: 75px;
 	height: 75px;
 	background-color: #393733;
+	display: inline-block;
 }
 
 #cast_item_text{
