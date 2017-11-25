@@ -13,7 +13,7 @@
 	$signupORlogout = isset($_SESSION['username']) ? "cerrar sesión" : "registrarse";
 
  $movie = $_GET["movie"];
- $genreid = $_GET["genre"];
+ $genreid = $_GET["genreid"];
 
   //$movie = $argv[2];
  	//$genreid = $argv[1];

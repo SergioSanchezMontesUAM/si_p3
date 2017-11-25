@@ -36,7 +36,7 @@
 			<div class="header_column">
 
 				<form class="search_bar" method="get" action="search.php" id="form_search">
-					<select name="genre" form="form_search">
+					<select name="genreid" form="form_search">
 						<option value="0" selected>All categories</option>
 						<?php
 							$q_genres = $database->query("select * from genres order by genre asc");
