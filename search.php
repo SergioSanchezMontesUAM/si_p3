@@ -217,7 +217,7 @@
 
 					$i = 0;
 					while($row = $q_movies->fetch(PDO::FETCH_OBJ)){
-						$movie_html .=  "<div class=\"item_movie\"><a href=detail.php?id=" . $row->prodid . "><img class='movie'></a><div class='movie_title'>" . $row->movietitle . "</div><div class='movie_price'>" . $row->price . "</div></div>";
+						$movie_html .=  "<div class=\"item_movie\"><a href=detail.php?id=" . $row->prodid . "><img class='movie'></a><div class='movie_title'>" . $row->movietitle . "</div><div class='movie_price'>$" . $row->price . "</div></div>";
 						$i++;
 						if($i%3 === 0) {
 							echo "<div class='last_movies_row'>" . $movie_html . "</div>";

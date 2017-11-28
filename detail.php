@@ -59,10 +59,10 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	      rel="stylesheet">
-	    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="js/main.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-  	    <script src="js/users_online.js"></script>
+    <script src="js/users_online.js"></script>
 	</head>
 <body>
 
@@ -199,7 +199,7 @@
 		<div class="detail_synopsis">
 			<div class="movie_info_title">Sinopsis</div>
 			<div class="movie_info_text">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et egestas leo. Praesent eget libero sit amet elit maximus rutrum malesuada ut tortor. Suspendisse potenti. Vivamus vel gravida diam. Etiam vestibulum hendrerit nisi, sit amet molestie nibh pretium et. Integer quis nunc accumsan, pellentesque nisl in, commodo metus. Aliquam at urna nec urna luctus pretium. Nunc in sem vitae risus tincidunt egestas non a tortor. Vestibulum sed massa vel ante tristique commodo. Curabitur mollis laoreet magna in dapibus. Maecenas sit amet sem id nisl lobortis maximus. 
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et egestas leo. Praesent eget libero sit amet elit maximus rutrum malesuada ut tortor. Suspendisse potenti. Vivamus vel gravida diam. Etiam vestibulum hendrerit nisi, sit amet molestie nibh pretium et. Integer quis nunc accumsan, pellentesque nisl in, commodo metus. Aliquam at urna nec urna luctus pretium. Nunc in sem vitae risus tincidunt egestas non a tortor. Vestibulum sed massa vel ante tristique commodo. Curabitur mollis laoreet magna in dapibus. Maecenas sit amet sem id nisl lobortis maximus.
 			</div>
 		</div>
 
@@ -281,15 +281,28 @@
 		<script>
 
 			function addToCartScript(){
-				if ($.cookie('cart_items_cookie') == null){
-					var cartItems = [];
-				}
-				else{
-					var cartItems =  JSON.parse($.cookie('cart_items_cookie'));
-				}
+				<?php
 
-				cartItems.push("<?php echo $id; ?>");
-				$.cookie('cart_items_cookie', JSON.stringify(cartItems));
+					if($_SESSION['cart_is_empty']){
+						$database->exec("insert into orders(shipmentstatusid, orderdate, customerid, tax) values (4, now()," . $_SESSION['customerid'] . ", 0)");
+						$_SESSION['cart_is_empty'] = False;
+						$orderid = $database->query("select currval('orders_orderidid_seq')")->fetch(PDO::FETCH_OBJ)->currval;
+						$_SESSION['orderid'] = $orderid;
+
+					}
+
+					$q_cart_items = $database->query("select * from orderdetail where orderid=" . $_SESSION['orderid']);
+					while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
+						if($row->prodid == $prodid){
+							$database->exec("update orderdetail set quantity=" . ($row->quantity + 1) . " where orderid=" . $_SESSION['orderid'] . " and prodid=" . $prodid);
+						}
+					}
+
+					$database->exec("insert into orderdetail values (" . $_SESSION['orderid'] . "," . $prodid . "," . $price . ", 1)");
+
+				?>
+
+
 
 				alert("Artículo añadido al carrito")
 			}

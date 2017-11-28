@@ -518,7 +518,8 @@ input[type=submit]{
 }
 
 #cart_empty_text{
-	padding:15px;
+	padding:50px;
+	text-align: center;
 }
 
 .history_card{
@@ -671,6 +672,7 @@ h2{
 	width: 70px;
 	height: 100px;
 	margin: 30px;
+	background-color: #393733;
 }
 
 .cart_movie{

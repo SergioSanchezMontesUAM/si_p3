@@ -1,6 +1,7 @@
 <?php
 
 	if(isset($_POST['submit_log_in'])){
+
 		$username = $_REQUEST['username'];
 		$password = $_REQUEST['password'];
 
@@ -12,6 +13,8 @@
 				if($returned_password->passwd === $password){
 					session_start();
 					$_SESSION['username'] = $username;
+					$_SESSION['customerid'] = $database->query("select * from customers where username='" . $username . "'")->fetch(PDO::FETCH_OBJ)->customerid;
+					$_SESSION['cart_is_empty'] = True;
 					header('Location: index.php');
 				}
 			}
