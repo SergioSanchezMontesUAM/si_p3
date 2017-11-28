@@ -109,16 +109,12 @@
 
 			<div class="last_movies_row">
 				<?php
-					$q_max_year = $database->query("select year from imdb_movies order by year desc limit 1");
-					$max_year = $q_max_year->fetch(PDO::FETCH_OBJ);
-			    $from_year = $max_year->year - 2;
-
-					$q_top_ventas = $database->query("select * from gettopventas('" . $from_year . "')");
+					$q_top_ventas = $database->query("select * from gettopventas('2015')");
 
 					while($row = $q_top_ventas->fetch(PDO::FETCH_OBJ)){
 						echo "<div class='item_movie'>
 										<h2>" . $row->agno . "</h2>
-										<a href=#>
+										<a href=detail.php?id=" . $row->id_producto . ">
 											<div class='movie'></div>
 										</a>
 										<div class='movie_title'>"
@@ -126,7 +122,7 @@
 										"</div>
 										<div class='movie_price'>"
 											. $row->ventas .
-										"</div>
+										" units</div>
 									</div>";
 					}
 				?>

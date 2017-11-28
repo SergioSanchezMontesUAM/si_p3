@@ -20,9 +20,10 @@
 	}
 
 	$q_title_year_price = $database->query("select movietitle, year, price from imdb_movies natural join products natural join imdb_directormovies natural join imdb_directors natural join imdb_moviegenres natural join imdb_moviecountries where prodid=" . $prodid);
-	$movietitle = $q_title_year_price->fetch(PDO::FETCH_OBJ)->movietitle;
-	$year = $q_title_year_price->fetch(PDO::FETCH_OBJ)->year;
-	$price = $q_title_year_price->fetch(PDO::FETCH_OBJ)->price;
+	$qr_title_year_price = $q_title_year_price->fetch(PDO::FETCH_OBJ);
+	$movietitle = $qr_title_year_price->movietitle;
+	$year = $qr_title_year_price->year;
+	$price = $qr_title_year_price->price;
 
 	$q_genres = $database->query("select genre from products natural join imdb_moviegenres natural join genres where prodid=" . $prodid);
 	$genres = array();
@@ -60,9 +61,44 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	      rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="js/main.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/users_online.js"></script>
+		<script type="text/javascript">
+
+			function addToCartScript(){
+
+				<?php
+						if($_SESSION['cart_is_empty']){
+							$database->exec("insert into orders(shipmentstatusid, orderdate, customerid, tax) values (4, now()," . $_SESSION['customerid'] . ", 0)");
+							$_SESSION['cart_is_empty'] = False;
+							$orderid = $database->query("select currval('orders_orderidid_seq')")->fetch(PDO::FETCH_OBJ)->currval;
+							$_SESSION['orderid'] = $orderid;
+
+						}
+
+						$q_cart_items = $database->query("select * from orderdetail where orderid=" . $_SESSION['orderid']);
+						while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
+							if($row->prodid == $prodid){
+								$database->exec("update orderdetail set quantity=" . ($row->quantity + 1) . " where orderid=" . $_SESSION['orderid'] . " and prodid=" . $prodid);
+							}
+						}
+
+						$database->exec("insert into orderdetail values (" . $_SESSION['orderid'] . "," . $prodid . "," . $price . ", 1)");
+
+				?>
+
+
+
+				alert("Artículo añadido al carrito")
+			}
+
+			function buyScript(){
+				addToCartScript()
+				window.location = "cart.php"
+			}
+
+		</script>
 	</head>
 <body>
 
@@ -278,40 +314,6 @@
 			</div>
 	</div>
 
-		<script>
 
-			function addToCartScript(){
-				<?php
-
-					if($_SESSION['cart_is_empty']){
-						$database->exec("insert into orders(shipmentstatusid, orderdate, customerid, tax) values (4, now()," . $_SESSION['customerid'] . ", 0)");
-						$_SESSION['cart_is_empty'] = False;
-						$orderid = $database->query("select currval('orders_orderidid_seq')")->fetch(PDO::FETCH_OBJ)->currval;
-						$_SESSION['orderid'] = $orderid;
-
-					}
-
-					$q_cart_items = $database->query("select * from orderdetail where orderid=" . $_SESSION['orderid']);
-					while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
-						if($row->prodid == $prodid){
-							$database->exec("update orderdetail set quantity=" . ($row->quantity + 1) . " where orderid=" . $_SESSION['orderid'] . " and prodid=" . $prodid);
-						}
-					}
-
-					$database->exec("insert into orderdetail values (" . $_SESSION['orderid'] . "," . $prodid . "," . $price . ", 1)");
-
-				?>
-
-
-
-				alert("Artículo añadido al carrito")
-			}
-
-			function buyScript(){
-				addToCartScript()
-				window.location = "cart.php"
-			}
-
-		</script>
 </body>
 </html>
