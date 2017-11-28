@@ -84,11 +84,11 @@
 							}
 						}
 
-						$database->exec("insert into orderdetail values (" . $_SESSION['orderid'] . "," . $prodid . "," . $price . ", 1)");
+						if($database->exec("insert into orderdetail values (" . $_SESSION['orderid'] . "," . $prodid . "," . $price . ", 1)")){
+							header("Refresh:0");
+						}
 
 				?>
-
-
 
 				alert("Artículo añadido al carrito")
 			}
