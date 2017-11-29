@@ -125,7 +125,7 @@
 							<th></th>
 							</tr>";
 
-							$q_cart_items = $database->query("select prodid, movietitle, price, quantity from orderdetail natural join products natural join imdb_movies where orderid=" . $_SESSION['orderid']);
+							$q_cart_items = $database->query("select prodid, movietitle, price, quantity from orderdetail natural join products natural join imdb_movies natural join orders where shipmentstatusid=4 and orderid=" . $_SESSION['orderid']);
 
 							while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
 								$title = $row->movietitle;
@@ -172,7 +172,7 @@
 				<div class="add_to_cart_btn" onclick="continueShoppingScript()">
 					Continuar comprando
 				</div>
-				<div class="buy_btn" onclick="checkoutScript()">
+				<div class="buy_btn" onclick="checkoutScript(<?php echo $_SESSION['orderid'] ?>)">
 					Pagar
 				</div>
 			</div>
@@ -232,8 +232,13 @@
 			window.location = "index.php"
 		}
 
-		function checkoutScript(){
-
+		function checkoutScript(orderid){
+			$.ajax({
+				type: 'POST',
+				url: 'checkout_cart.php',
+				data: {orderid:orderid},
+				success: function(data){window.location.replace("index.php")}
+			})
 		}
 
 		function removeItemFromCart(orderid, prodid){

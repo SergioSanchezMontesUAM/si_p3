@@ -70,17 +70,19 @@
 
 				<?php
 						if($_SESSION['cart_is_empty']){
-							$database->exec("insert into orders(shipmentstatusid, orderdate, customerid, tax) values (4, now()," . $_SESSION['customerid'] . ", 0)");
+							$database->exec("insert into orders(shipmentstatusid, orderdate, customerid, tax) values (4, now()," . $_SESSION['customerid'] . ", 15)");
 							$_SESSION['cart_is_empty'] = False;
 							$orderid = $database->query("select currval('orders_orderidid_seq')")->fetch(PDO::FETCH_OBJ)->currval;
 							$_SESSION['orderid'] = $orderid;
 
 						}
 
-						$q_cart_items = $database->query("select * from orderdetail where orderid=" . $_SESSION['orderid']);
-						while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
-							if($row->prodid == $prodid){
-								$database->exec("update orderdetail set quantity=" . ($row->quantity + 1) . " where orderid=" . $_SESSION['orderid'] . " and prodid=" . $prodid);
+						if(isset($_SESSION['username'])){
+							$q_cart_items = $database->query("select * from orderdetail where orderid=" . $_SESSION['orderid']);
+							while($row = $q_cart_items->fetch(PDO::FETCH_OBJ)){
+								if($row->prodid == $prodid){
+									$database->exec("update orderdetail set quantity=" . ($row->quantity + 1) . " where orderid=" . $_SESSION['orderid'] . " and prodid=" . $prodid);
+								}
 							}
 						}
 
